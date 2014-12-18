@@ -1,0 +1,19 @@
+#include <s3eTypes.h>
+
+callbacks
+include:
+enum HeyzapCallback{
+	SHOW, CLICK, HIDE, FAILED_TO_SHOW, AVAILABLE, FAILED_TO_FETCH, AUDIO_STARTED, AUDIO_FINISHED,INCENTIVE_COMPLETE, INCENTIVE_INCOMPLETE
+};
+
+#define HEYZAP_CALLBACK_MAX 10000
+
+functions:
+void start(const char* pubId)
+void fetchInterstitial(const char* tag)
+void showInterstitial(const char* tag)
+void fetchVideo(const char* tag)
+void showVideo(const char* tag)
+void fetchRewarded(const char* tag)
+void showRewarded(const char* tag)
+void startTestActivity()
