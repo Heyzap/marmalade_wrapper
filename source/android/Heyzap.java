@@ -84,27 +84,51 @@ class Heyzap
     }
     public void fetchInterstitial(String tag)
     {
-        InterstitialAd.fetch(tag);
+        if(tag.isEmpty()){
+            InterstitialAd.fetch();
+        }else{
+            InterstitialAd.fetch(tag);
+        }
     }
     public void showInterstitial(String tag)
     {
-        InterstitialAd.display(LoaderAPI.getActivity(), tag);
+        if(tag.isEmpty()){
+            InterstitialAd.display(LoaderAPI.getActivity());
+        }else{
+            InterstitialAd.display(LoaderAPI.getActivity(), tag);
+        }
     }
     public void fetchVideo(String tag)
     {
-        VideoAd.fetch(tag);
+        if(tag.isEmpty()){
+            VideoAd.fetch();
+        }else{
+            VideoAd.fetch(tag);
+        }
     }
     public void showVideo(String tag)
     {
-        VideoAd.display(LoaderAPI.getActivity(), tag);
+        if(tag.isEmpty()){
+            VideoAd.display(LoaderAPI.getActivity());
+        }else{
+            VideoAd.display(LoaderAPI.getActivity(), tag);
+        }
     }
     public void fetchRewarded(String tag)
     {
-        IncentivizedAd.fetch(tag);
+        if(tag.isEmpty()){
+            IncentivizedAd.fetch();
+        }else{
+            IncentivizedAd.fetch(tag);
+        }
     }
     public void showRewarded(String tag)
     {
-        IncentivizedAd.display(LoaderAPI.getActivity(), tag);
+        if(tag.isEmpty()){
+            IncentivizedAd.display(LoaderAPI.getActivity());
+        }else{
+            IncentivizedAd.display(LoaderAPI.getActivity(), tag);
+        }
     }
     public void startTestActivity()
     {

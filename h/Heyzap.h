@@ -16,13 +16,15 @@
 #ifndef S3E_EXT_HEYZAP_H
 #define S3E_EXT_HEYZAP_H
 
+#include "s3eTypes.h"
+
 enum HeyzapCallback{
 	SHOW, CLICK, HIDE, FAILED_TO_SHOW, AVAILABLE, FAILED_TO_FETCH, AUDIO_STARTED, AUDIO_FINISHED,INCENTIVE_COMPLETE, INCENTIVE_INCOMPLETE
 };
 
 #define HEYZAP_CALLBACK_MAX 10000
 // \cond HIDDEN_DEFINES
-S3E_BEGIN_C_DECL
+
 // \endcond
 
 /**
@@ -77,6 +79,6 @@ void showRewarded(const char* tag);
 
 void startTestActivity();
 
-S3E_END_C_DECL
+
 
 #endif /* !S3E_EXT_HEYZAP_H */
