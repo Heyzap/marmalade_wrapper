@@ -34,14 +34,14 @@ void HeyzapRegisterExt()
     void* funcPtrs[10];
     funcPtrs[0] = (void*)HeyzapRegister;
     funcPtrs[1] = (void*)HeyzapUnRegister;
-    funcPtrs[2] = (void*)start;
-    funcPtrs[3] = (void*)fetchInterstitial;
-    funcPtrs[4] = (void*)showInterstitial;
-    funcPtrs[5] = (void*)fetchVideo;
-    funcPtrs[6] = (void*)showVideo;
-    funcPtrs[7] = (void*)fetchRewarded;
-    funcPtrs[8] = (void*)showRewarded;
-    funcPtrs[9] = (void*)startTestActivity;
+    funcPtrs[2] = (void*)HeyzapStart;
+    funcPtrs[3] = (void*)HeyzapFetchInterstitial;
+    funcPtrs[4] = (void*)HeyzapShowInterstitial;
+    funcPtrs[5] = (void*)HeyzapFetchVideo;
+    funcPtrs[6] = (void*)HeyzapShowVideo;
+    funcPtrs[7] = (void*)HeyzapFetchRewarded;
+    funcPtrs[8] = (void*)HeyzapShowRewarded;
+    funcPtrs[9] = (void*)HeyzapStartTestActivity;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching

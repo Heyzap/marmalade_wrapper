@@ -17,14 +17,13 @@
 #define S3E_EXT_HEYZAP_H
 
 #include "s3eTypes.h"
-
+ 
 enum HeyzapCallback{
 	SHOW, CLICK, HIDE, FAILED_TO_SHOW, AVAILABLE, FAILED_TO_FETCH, AUDIO_STARTED, AUDIO_FINISHED,INCENTIVE_COMPLETE, INCENTIVE_INCOMPLETE
 };
 
 #define HEYZAP_CALLBACK_MAX 10000
 // \cond HIDDEN_DEFINES
-
 // \endcond
 
 /**
@@ -63,22 +62,21 @@ s3eResult HeyzapRegister(HeyzapCallback cbid, s3eCallback fn, void* userData);
  */
 s3eResult HeyzapUnRegister(HeyzapCallback cbid, s3eCallback fn);
 
-void start(const char* pubId);
+void HeyzapStart(const char* pubId);
 
-void fetchInterstitial(const char* tag);
+void HeyzapFetchInterstitial(const char* tag);
 
-void showInterstitial(const char* tag);
+void HeyzapShowInterstitial(const char* tag);
 
-void fetchVideo(const char* tag);
+void HeyzapFetchVideo(const char* tag);
 
-void showVideo(const char* tag);
+void HeyzapShowVideo(const char* tag);
 
-void fetchRewarded(const char* tag);
+void HeyzapFetchRewarded(const char* tag);
 
-void showRewarded(const char* tag);
+void HeyzapShowRewarded(const char* tag);
 
-void startTestActivity();
-
+void HeyzapStartTestActivity();
 
 
 #endif /* !S3E_EXT_HEYZAP_H */

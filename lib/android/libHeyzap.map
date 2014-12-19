@@ -61,14 +61,14 @@ Memory map
                 0x00000554                Heyzap_nativeCallback(_JNIEnv*, _jobject*, int)
                 0x000007e0                HeyzapInit_platform()
                 0x00000b10                HeyzapTerminate_platform()
-                0x00000b68                start_platform(char const*)
-                0x00000bd8                fetchInterstitial_platform(char const*)
-                0x00000c48                showInterstitial_platform(char const*)
-                0x00000cb8                fetchVideo_platform(char const*)
-                0x00000d28                showVideo_platform(char const*)
-                0x00000d98                fetchRewarded_platform(char const*)
-                0x00000e08                showRewarded_platform(char const*)
-                0x00000e78                startTestActivity_platform()
+                0x00000b68                HeyzapStart_platform(char const*)
+                0x00000bd8                HeyzapFetchInterstitial_platform(char const*)
+                0x00000c48                HeyzapShowInterstitial_platform(char const*)
+                0x00000cb8                HeyzapFetchVideo_platform(char const*)
+                0x00000d28                HeyzapShowVideo_platform(char const*)
+                0x00000d98                HeyzapFetchRewarded_platform(char const*)
+                0x00000e08                HeyzapShowRewarded_platform(char const*)
+                0x00000e78                HeyzapStartTestActivity_platform()
  .text._ZN7_JNIEnv9NewObjectEP7_jclassP10_jmethodIDz
                 0x00000ec8       0x38 release/Heyzap_platform.os
                 0x00000ec8                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
@@ -78,14 +78,14 @@ Memory map
  .text          0x00000f38       0x28 release/Heyzap.os
                 0x00000f38                HeyzapInit()
                 0x00000f3c                HeyzapTerminate()
-                0x00000f40                start
-                0x00000f44                fetchInterstitial
-                0x00000f48                showInterstitial
-                0x00000f4c                fetchVideo
-                0x00000f50                showVideo
-                0x00000f54                fetchRewarded
-                0x00000f58                showRewarded
-                0x00000f5c                startTestActivity
+                0x00000f40                HeyzapStart
+                0x00000f44                HeyzapFetchInterstitial
+                0x00000f48                HeyzapShowInterstitial
+                0x00000f4c                HeyzapFetchVideo
+                0x00000f50                HeyzapShowVideo
+                0x00000f54                HeyzapFetchRewarded
+                0x00000f58                HeyzapShowRewarded
+                0x00000f5c                HeyzapStartTestActivity
  .text          0x00000f60      0x2b0 release/Heyzap_register.os
                 0x00000f60                HeyzapRegister
                 0x00000f94                HeyzapUnRegister
@@ -103,9 +103,9 @@ Memory map
                 0x00001270                s3eEdkThreadRunOnOSAsync
  .text          0x000012a0        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/platforms/android-14/arch-arm/usr/lib/crtend_so.o
 
-.rodata         0x000012a0       0xbd
+.rodata         0x000012a0       0xe1
  ** merge strings
-                0x000012a0       0xbd
+                0x000012a0       0xe1
 
 .fini_array     0x00002e8c        0x8
  .fini_array    0x00002e8c        0x4 /Users/heyzap2/Downloads/android-ndk-r10d/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o

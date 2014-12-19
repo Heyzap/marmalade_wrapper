@@ -23,42 +23,42 @@ void HeyzapTerminate()
     HeyzapTerminate_platform();
 }
 
-void start(const char* pubId)
+void HeyzapStart(const char* pubId)
 {
-	start_platform(pubId);
+	HeyzapStart_platform(pubId);
 }
 
-void fetchInterstitial(const char* tag)
+void HeyzapFetchInterstitial(const char* tag)
 {
-	fetchInterstitial_platform(tag);
+	HeyzapFetchInterstitial_platform(tag);
 }
 
-void showInterstitial(const char* tag)
+void HeyzapShowInterstitial(const char* tag)
 {
-	showInterstitial_platform(tag);
+	HeyzapShowInterstitial_platform(tag);
 }
 
-void fetchVideo(const char* tag)
+void HeyzapFetchVideo(const char* tag)
 {
-	fetchVideo_platform(tag);
+	HeyzapFetchVideo_platform(tag);
 }
 
-void showVideo(const char* tag)
+void HeyzapShowVideo(const char* tag)
 {
-	showVideo_platform(tag);
+	HeyzapShowVideo_platform(tag);
 }
 
-void fetchRewarded(const char* tag)
+void HeyzapFetchRewarded(const char* tag)
 {
-	fetchRewarded_platform(tag);
+	HeyzapFetchRewarded_platform(tag);
 }
 
-void showRewarded(const char* tag)
+void HeyzapShowRewarded(const char* tag)
 {
-	showRewarded_platform(tag);
+	HeyzapShowRewarded_platform(tag);
 }
 
-void startTestActivity()
+void HeyzapStartTestActivity()
 {
-	startTestActivity_platform();
+	HeyzapStartTestActivity_platform();
 }

@@ -24,14 +24,14 @@
  */
 typedef  s3eResult(*HeyzapRegister_t)(HeyzapCallback cbid, s3eCallback fn, void* userData);
 typedef  s3eResult(*HeyzapUnRegister_t)(HeyzapCallback cbid, s3eCallback fn);
-typedef       void(*start_t)(const char* pubId);
-typedef       void(*fetchInterstitial_t)(const char* tag);
-typedef       void(*showInterstitial_t)(const char* tag);
-typedef       void(*fetchVideo_t)(const char* tag);
-typedef       void(*showVideo_t)(const char* tag);
-typedef       void(*fetchRewarded_t)(const char* tag);
-typedef       void(*showRewarded_t)(const char* tag);
-typedef       void(*startTestActivity_t)();
+typedef       void(*HeyzapStart_t)(const char* pubId);
+typedef       void(*HeyzapFetchInterstitial_t)(const char* tag);
+typedef       void(*HeyzapShowInterstitial_t)(const char* tag);
+typedef       void(*HeyzapFetchVideo_t)(const char* tag);
+typedef       void(*HeyzapShowVideo_t)(const char* tag);
+typedef       void(*HeyzapFetchRewarded_t)(const char* tag);
+typedef       void(*HeyzapShowRewarded_t)(const char* tag);
+typedef       void(*HeyzapStartTestActivity_t)();
 
 /**
  * struct that gets filled in by HeyzapRegister
@@ -40,14 +40,14 @@ typedef struct HeyzapFuncs
 {
     HeyzapRegister_t m_HeyzapRegister;
     HeyzapUnRegister_t m_HeyzapUnRegister;
-    start_t m_start;
-    fetchInterstitial_t m_fetchInterstitial;
-    showInterstitial_t m_showInterstitial;
-    fetchVideo_t m_fetchVideo;
-    showVideo_t m_showVideo;
-    fetchRewarded_t m_fetchRewarded;
-    showRewarded_t m_showRewarded;
-    startTestActivity_t m_startTestActivity;
+    HeyzapStart_t m_HeyzapStart;
+    HeyzapFetchInterstitial_t m_HeyzapFetchInterstitial;
+    HeyzapShowInterstitial_t m_HeyzapShowInterstitial;
+    HeyzapFetchVideo_t m_HeyzapFetchVideo;
+    HeyzapShowVideo_t m_HeyzapShowVideo;
+    HeyzapFetchRewarded_t m_HeyzapFetchRewarded;
+    HeyzapShowRewarded_t m_HeyzapShowRewarded;
+    HeyzapStartTestActivity_t m_HeyzapStartTestActivity;
 } HeyzapFuncs;
 
 static HeyzapFuncs g_Ext;
@@ -133,9 +133,9 @@ s3eResult HeyzapUnRegister(HeyzapCallback cbid, s3eCallback fn)
     return ret;
 }
 
-void start(const char* pubId)
+void HeyzapStart(const char* pubId)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[2] func: start"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[2] func: HeyzapStart"));
 
     if (!_extLoad())
         return;
@@ -144,7 +144,7 @@ void start(const char* pubId)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_start(pubId);
+    g_Ext.m_HeyzapStart(pubId);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -153,9 +153,9 @@ void start(const char* pubId)
     return;
 }
 
-void fetchInterstitial(const char* tag)
+void HeyzapFetchInterstitial(const char* tag)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[3] func: fetchInterstitial"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[3] func: HeyzapFetchInterstitial"));
 
     if (!_extLoad())
         return;
@@ -164,7 +164,7 @@ void fetchInterstitial(const char* tag)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_fetchInterstitial(tag);
+    g_Ext.m_HeyzapFetchInterstitial(tag);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -173,9 +173,9 @@ void fetchInterstitial(const char* tag)
     return;
 }
 
-void showInterstitial(const char* tag)
+void HeyzapShowInterstitial(const char* tag)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[4] func: showInterstitial"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[4] func: HeyzapShowInterstitial"));
 
     if (!_extLoad())
         return;
@@ -184,7 +184,7 @@ void showInterstitial(const char* tag)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_showInterstitial(tag);
+    g_Ext.m_HeyzapShowInterstitial(tag);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -193,9 +193,9 @@ void showInterstitial(const char* tag)
     return;
 }
 
-void fetchVideo(const char* tag)
+void HeyzapFetchVideo(const char* tag)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[5] func: fetchVideo"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[5] func: HeyzapFetchVideo"));
 
     if (!_extLoad())
         return;
@@ -204,7 +204,7 @@ void fetchVideo(const char* tag)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_fetchVideo(tag);
+    g_Ext.m_HeyzapFetchVideo(tag);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -213,9 +213,9 @@ void fetchVideo(const char* tag)
     return;
 }
 
-void showVideo(const char* tag)
+void HeyzapShowVideo(const char* tag)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[6] func: showVideo"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[6] func: HeyzapShowVideo"));
 
     if (!_extLoad())
         return;
@@ -224,7 +224,7 @@ void showVideo(const char* tag)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_showVideo(tag);
+    g_Ext.m_HeyzapShowVideo(tag);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -233,9 +233,9 @@ void showVideo(const char* tag)
     return;
 }
 
-void fetchRewarded(const char* tag)
+void HeyzapFetchRewarded(const char* tag)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[7] func: fetchRewarded"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[7] func: HeyzapFetchRewarded"));
 
     if (!_extLoad())
         return;
@@ -244,7 +244,7 @@ void fetchRewarded(const char* tag)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_fetchRewarded(tag);
+    g_Ext.m_HeyzapFetchRewarded(tag);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -253,9 +253,9 @@ void fetchRewarded(const char* tag)
     return;
 }
 
-void showRewarded(const char* tag)
+void HeyzapShowRewarded(const char* tag)
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[8] func: showRewarded"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[8] func: HeyzapShowRewarded"));
 
     if (!_extLoad())
         return;
@@ -264,7 +264,7 @@ void showRewarded(const char* tag)
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_showRewarded(tag);
+    g_Ext.m_HeyzapShowRewarded(tag);
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
@@ -273,9 +273,9 @@ void showRewarded(const char* tag)
     return;
 }
 
-void startTestActivity()
+void HeyzapStartTestActivity()
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[9] func: startTestActivity"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[9] func: HeyzapStartTestActivity"));
 
     if (!_extLoad())
         return;
@@ -284,7 +284,7 @@ void startTestActivity()
     s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
 #endif
 
-    g_Ext.m_startTestActivity();
+    g_Ext.m_HeyzapStartTestActivity();
 
 #ifdef LOADER_CALL_LOCK
     s3eDeviceLoaderCallDone(S3E_TRUE, NULL);

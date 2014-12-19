@@ -9,11 +9,11 @@ enum HeyzapCallback{
 #define HEYZAP_CALLBACK_MAX 10000
 
 functions:
-void start(const char* pubId)
-void fetchInterstitial(const char* tag)
-void showInterstitial(const char* tag)
-void fetchVideo(const char* tag)
-void showVideo(const char* tag)
-void fetchRewarded(const char* tag)
-void showRewarded(const char* tag)
-void startTestActivity()
+void HeyzapStart(const char* pubId)
+void HeyzapFetchInterstitial(const char* tag)
+void HeyzapShowInterstitial(const char* tag)
+void HeyzapFetchVideo(const char* tag)
+void HeyzapShowVideo(const char* tag)
+void HeyzapFetchRewarded(const char* tag)
+void HeyzapShowRewarded(const char* tag)
+void HeyzapStartTestActivity()

@@ -18,7 +18,7 @@ class Heyzap
 {
     public native void nativeCallback(int status);
 
-    public void start(String pubId)
+    public void HeyzapStart(String pubId)
     {
         HeyzapAds.start(pubId, LoaderAPI.getActivity());
         HeyzapAds.OnStatusListener listener = new HeyzapAds.OnStatusListener() {
@@ -80,9 +80,8 @@ class Heyzap
         VideoAd.setOnStatusListener(listener);
         IncentivizedAd.setOnStatusListener(listener);
         IncentivizedAd.setOnIncentiveResultListener(incentiveListener);
-
     }
-    public void fetchInterstitial(String tag)
+    public void HeyzapFetchInterstitial(String tag)
     {
         if(tag.isEmpty()){
             InterstitialAd.fetch();
@@ -90,7 +89,7 @@ class Heyzap
             InterstitialAd.fetch(tag);
         }
     }
-    public void showInterstitial(String tag)
+    public void HeyzapShowInterstitial(String tag)
     {
         if(tag.isEmpty()){
             InterstitialAd.display(LoaderAPI.getActivity());
@@ -98,7 +97,7 @@ class Heyzap
             InterstitialAd.display(LoaderAPI.getActivity(), tag);
         }
     }
-    public void fetchVideo(String tag)
+    public void HeyzapFetchVideo(String tag)
     {
         if(tag.isEmpty()){
             VideoAd.fetch();
@@ -106,7 +105,7 @@ class Heyzap
             VideoAd.fetch(tag);
         }
     }
-    public void showVideo(String tag)
+    public void HeyzapShowVideo(String tag)
     {
         if(tag.isEmpty()){
             VideoAd.display(LoaderAPI.getActivity());
@@ -114,7 +113,7 @@ class Heyzap
             VideoAd.display(LoaderAPI.getActivity(), tag);
         }
     }
-    public void fetchRewarded(String tag)
+    public void HeyzapFetchRewarded(String tag)
     {
         if(tag.isEmpty()){
             IncentivizedAd.fetch();
@@ -122,7 +121,7 @@ class Heyzap
             IncentivizedAd.fetch(tag);
         }
     }
-    public void showRewarded(String tag)
+    public void HeyzapShowRewarded(String tag)
     {
         if(tag.isEmpty()){
             IncentivizedAd.display(LoaderAPI.getActivity());
@@ -130,7 +129,7 @@ class Heyzap
             IncentivizedAd.display(LoaderAPI.getActivity(), tag);
         }
     }
-    public void startTestActivity()
+    public void HeyzapStartTestActivity()
     {
         HeyzapAds.startTestActivity(LoaderAPI.getActivity());
     }

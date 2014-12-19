@@ -42,21 +42,21 @@ void HeyzapTerminate();
  * Platform-specific termination, implemented on each platform
  */
 void HeyzapTerminate_platform();
-void start_platform(const char* pubId);
+void HeyzapStart_platform(const char* pubId);
 
-void fetchInterstitial_platform(const char* tag);
+void HeyzapFetchInterstitial_platform(const char* tag);
 
-void showInterstitial_platform(const char* tag);
+void HeyzapShowInterstitial_platform(const char* tag);
 
-void fetchVideo_platform(const char* tag);
+void HeyzapFetchVideo_platform(const char* tag);
 
-void showVideo_platform(const char* tag);
+void HeyzapShowVideo_platform(const char* tag);
 
-void fetchRewarded_platform(const char* tag);
+void HeyzapFetchRewarded_platform(const char* tag);
 
-void showRewarded_platform(const char* tag);
+void HeyzapShowRewarded_platform(const char* tag);
 
-void startTestActivity_platform();
+void HeyzapStartTestActivity_platform();
 
 
 #endif /* !HEYZAP_INTERNAL_H */

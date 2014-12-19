@@ -13,16 +13,15 @@
 #include <jni.h>
 #include "IwDebug.h"
 
-
 static jobject g_Obj;
-static jmethodID g_start;
-static jmethodID g_fetchInterstitial;
-static jmethodID g_showInterstitial;
-static jmethodID g_fetchVideo;
-static jmethodID g_showVideo;
-static jmethodID g_fetchRewarded;
-static jmethodID g_showRewarded;
-static jmethodID g_startTestActivity;
+static jmethodID g_HeyzapStart;
+static jmethodID g_HeyzapFetchInterstitial;
+static jmethodID g_HeyzapShowInterstitial;
+static jmethodID g_HeyzapFetchVideo;
+static jmethodID g_HeyzapShowVideo;
+static jmethodID g_HeyzapFetchRewarded;
+static jmethodID g_HeyzapShowRewarded;
+static jmethodID g_HeyzapStartTestActivity;
 
 void JNICALL Heyzap_nativeCallback(JNIEnv* env, jobject obj, jint status)
 {
@@ -83,38 +82,37 @@ s3eResult HeyzapInit_platform()
         goto fail;
 
     // Get all the extension methods
-    g_start = env->GetMethodID(cls, "start", "(Ljava/lang/String;)V");
-    if (!g_start)
+    g_HeyzapStart = env->GetMethodID(cls, "HeyzapStart", "(Ljava/lang/String;)V");
+    if (!g_HeyzapStart)
         goto fail;
 
-    g_fetchInterstitial = env->GetMethodID(cls, "fetchInterstitial", "(Ljava/lang/String;)V");
-    if (!g_fetchInterstitial)
+    g_HeyzapFetchInterstitial = env->GetMethodID(cls, "HeyzapFetchInterstitial", "(Ljava/lang/String;)V");
+    if (!g_HeyzapFetchInterstitial)
         goto fail;
 
-    g_showInterstitial = env->GetMethodID(cls, "showInterstitial", "(Ljava/lang/String;)V");
-    if (!g_showInterstitial)
+    g_HeyzapShowInterstitial = env->GetMethodID(cls, "HeyzapShowInterstitial", "(Ljava/lang/String;)V");
+    if (!g_HeyzapShowInterstitial)
         goto fail;
 
-    g_fetchVideo = env->GetMethodID(cls, "fetchVideo", "(Ljava/lang/String;)V");
-    if (!g_fetchVideo)
+    g_HeyzapFetchVideo = env->GetMethodID(cls, "HeyzapFetchVideo", "(Ljava/lang/String;)V");
+    if (!g_HeyzapFetchVideo)
         goto fail;
 
-    g_showVideo = env->GetMethodID(cls, "showVideo", "(Ljava/lang/String;)V");
-    if (!g_showVideo)
+    g_HeyzapShowVideo = env->GetMethodID(cls, "HeyzapShowVideo", "(Ljava/lang/String;)V");
+    if (!g_HeyzapShowVideo)
         goto fail;
 
-    g_fetchRewarded = env->GetMethodID(cls, "fetchRewarded", "(Ljava/lang/String;)V");
-    if (!g_fetchRewarded)
+    g_HeyzapFetchRewarded = env->GetMethodID(cls, "HeyzapFetchRewarded", "(Ljava/lang/String;)V");
+    if (!g_HeyzapFetchRewarded)
         goto fail;
 
-    g_showRewarded = env->GetMethodID(cls, "showRewarded", "(Ljava/lang/String;)V");
-    if (!g_showRewarded)
+    g_HeyzapShowRewarded = env->GetMethodID(cls, "HeyzapShowRewarded", "(Ljava/lang/String;)V");
+    if (!g_HeyzapShowRewarded)
         goto fail;
 
-    g_startTestActivity = env->GetMethodID(cls, "startTestActivity", "()V");
-    if (!g_startTestActivity)
+    g_HeyzapStartTestActivity = env->GetMethodID(cls, "HeyzapStartTestActivity", "()V");
+    if (!g_HeyzapStartTestActivity)
         goto fail;
-
 
     static const JNINativeMethod methods[] =
     {
@@ -124,7 +122,6 @@ s3eResult HeyzapInit_platform()
     // Register the native hooks
     if (env->RegisterNatives(cls, methods,sizeof(methods)/sizeof(methods[0])))
         goto fail;
-
 
 
     IwTrace(HEYZAP, ("HEYZAP init success"));
@@ -158,57 +155,57 @@ void HeyzapTerminate_platform()
     g_Obj = NULL;
 }
 
-void start_platform(const char* pubId)
+void HeyzapStart_platform(const char* pubId)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring pubId_jstr = env->NewStringUTF(pubId);
-    env->CallVoidMethod(g_Obj, g_start, pubId_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapStart, pubId_jstr);
 }
 
-void fetchInterstitial_platform(const char* tag)
+void HeyzapFetchInterstitial_platform(const char* tag)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
-    env->CallVoidMethod(g_Obj, g_fetchInterstitial, tag_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapFetchInterstitial, tag_jstr);
 }
 
-void showInterstitial_platform(const char* tag)
+void HeyzapShowInterstitial_platform(const char* tag)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
-    env->CallVoidMethod(g_Obj, g_showInterstitial, tag_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapShowInterstitial, tag_jstr);
 }
 
-void fetchVideo_platform(const char* tag)
+void HeyzapFetchVideo_platform(const char* tag)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
-    env->CallVoidMethod(g_Obj, g_fetchVideo, tag_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapFetchVideo, tag_jstr);
 }
 
-void showVideo_platform(const char* tag)
+void HeyzapShowVideo_platform(const char* tag)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
-    env->CallVoidMethod(g_Obj, g_showVideo, tag_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapShowVideo, tag_jstr);
 }
 
-void fetchRewarded_platform(const char* tag)
+void HeyzapFetchRewarded_platform(const char* tag)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
-    env->CallVoidMethod(g_Obj, g_fetchRewarded, tag_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapFetchRewarded, tag_jstr);
 }
 
-void showRewarded_platform(const char* tag)
+void HeyzapShowRewarded_platform(const char* tag)
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
-    env->CallVoidMethod(g_Obj, g_showRewarded, tag_jstr);
+    env->CallVoidMethod(g_Obj, g_HeyzapShowRewarded, tag_jstr);
 }
 
-void startTestActivity_platform()
+void HeyzapStartTestActivity_platform()
 {
     JNIEnv* env = s3eEdkJNIGetEnv();
-    env->CallVoidMethod(g_Obj, g_startTestActivity);
+    env->CallVoidMethod(g_Obj, g_HeyzapStartTestActivity);
 }

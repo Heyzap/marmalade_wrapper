@@ -114,14 +114,14 @@ Memory map
                 0x0000158c                Heyzap_nativeCallback(_JNIEnv*, _jobject*, int)
                 0x00001814                HeyzapInit_platform()
                 0x00001d00                HeyzapTerminate_platform()
-                0x00001d48                start_platform(char const*)
-                0x00001da8                fetchInterstitial_platform(char const*)
-                0x00001e08                showInterstitial_platform(char const*)
-                0x00001e68                fetchVideo_platform(char const*)
-                0x00001ec8                showVideo_platform(char const*)
-                0x00001f28                fetchRewarded_platform(char const*)
-                0x00001f88                showRewarded_platform(char const*)
-                0x00001fe8                startTestActivity_platform()
+                0x00001d48                HeyzapStart_platform(char const*)
+                0x00001da8                HeyzapFetchInterstitial_platform(char const*)
+                0x00001e08                HeyzapShowInterstitial_platform(char const*)
+                0x00001e68                HeyzapFetchVideo_platform(char const*)
+                0x00001ec8                HeyzapShowVideo_platform(char const*)
+                0x00001f28                HeyzapFetchRewarded_platform(char const*)
+                0x00001f88                HeyzapShowRewarded_platform(char const*)
+                0x00001fe8                HeyzapStartTestActivity_platform()
  .text._ZN7_JNIEnv9FindClassEPKc
                 0x00002030       0x38 debug/Heyzap_platform.os
                 0x00002030                _JNIEnv::FindClass(char const*)
@@ -164,14 +164,14 @@ Memory map
  .text          0x0000232c       0xf0 debug/Heyzap.os
                 0x0000232c                HeyzapInit()
                 0x00002340                HeyzapTerminate()
-                0x0000234c                start
-                0x00002368                fetchInterstitial
-                0x00002384                showInterstitial
-                0x000023a0                fetchVideo
-                0x000023bc                showVideo
-                0x000023d8                fetchRewarded
-                0x000023f4                showRewarded
-                0x00002410                startTestActivity
+                0x0000234c                HeyzapStart
+                0x00002368                HeyzapFetchInterstitial
+                0x00002384                HeyzapShowInterstitial
+                0x000023a0                HeyzapFetchVideo
+                0x000023bc                HeyzapShowVideo
+                0x000023d8                HeyzapFetchRewarded
+                0x000023f4                HeyzapShowRewarded
+                0x00002410                HeyzapStartTestActivity
  .text          0x0000241c      0x228 debug/Heyzap_register.os
                 0x0000241c                HeyzapRegister
                 0x00002470                HeyzapUnRegister
@@ -299,31 +299,31 @@ Memory map
                 0x00005430                __aeabi_uidivmod
  .text          0x00005450        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/platforms/android-14/arch-arm/usr/lib/crtend_so.o
 
-.rodata         0x00005450      0x22a
- .rodata        0x00005450      0x108 debug/Heyzap_platform.os
- .rodata        0x00005558        0x8 debug/Heyzap_register.os
+.rodata         0x00005450      0x24e
+ .rodata        0x00005450      0x12c debug/Heyzap_platform.os
+ .rodata        0x0000557c        0x8 debug/Heyzap_register.os
  ** merge strings
-                0x00005560      0x11a
+                0x00005584      0x11a
 
-.ARM.extab      0x0000567c       0x48
- .ARM.extab     0x0000567c        0xc /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
- .ARM.extab     0x00005688        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
- .ARM.extab     0x00005688        0xc /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
- .ARM.extab     0x00005694       0x30 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .ARM.extab     0x000056c4        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .ARM.extab     0x000056c4        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+.ARM.extab      0x000056a0       0x48
+ .ARM.extab     0x000056a0        0xc /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .ARM.extab     0x000056ac        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .ARM.extab     0x000056ac        0xc /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .ARM.extab     0x000056b8       0x30 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .ARM.extab     0x000056e8        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .ARM.extab     0x000056e8        0x0 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
 
-.ARM.exidx      0x000056c4      0x128
- .ARM.exidx     0x000056c4        0x8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+.ARM.exidx      0x000056e8      0x128
+ .ARM.exidx     0x000056e8        0x8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
  .ARM.exidx     0xffffffffffffffff       0x10 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
  .ARM.exidx     0xffffffffffffffff       0xd8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
  ** ARM cantunwind
-                0x00005784        0x8
- .ARM.exidx     0x0000578c       0x48 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .ARM.exidx     0x000057d4        0x8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .ARM.exidx     0x000057dc        0x8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x000057a8        0x8
+ .ARM.exidx     0x000057b0       0x48 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .ARM.exidx     0x000057f8        0x8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00005800        0x8 /Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
  ** ARM cantunwind
-                0x000057e4        0x8
+                0x00005808        0x8
 
 .fini_array     0x00006e10        0x8
  .fini_array    0x00006e10        0x4 /Users/heyzap2/Downloads/android-ndk-r10d/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
