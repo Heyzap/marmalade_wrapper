@@ -1,3 +1,27 @@
+Heyzap Mediation Marmalade Wrapper
+=================		
+		
+A Marmalade wrapper for the Heyzap sdk	
+		
+Editable files
+-----------------------
+* Heyzap.s4e  		
+* source/android/Heyzap.java  		
+* source/android/Heyzap_platform.cpp  	
+
+everything else is generated
+
+Adding extra jars (for other networks supported by heyzap mediation)
+-------------------------------
+1) put it in the "incoming" directory  
+2) add it to Heyzap.mkf as an `android-external-jars` and  
+3) add it to Heyzap_android_java.mkb as a `librarypath`  
+
+
+Documentation on implemented methods
+-------------------------------------------
+
+``` c_cpp
 /**
  * Registers a callback to be called for an operating system event.
  *
@@ -79,3 +103,4 @@ void HeyzapShowRewarded(const char* tag);
  * @note This code should not be used in production, it is for testing purposes only.
  */
 void HeyzapStartTestActivity();
+```
