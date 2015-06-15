@@ -1,0 +1,13 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the Heyzap extension on iphone
+platform IPHONE
+
+options
+{
+    lib
+    output-name="lib/iphone/libHeyzap.a"
+    output-name-debug="lib/iphone/libHeyzap_d.a"
+}
+define S3E_BUILD_EXT
+
+subproject Heyzap_build
