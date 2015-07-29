@@ -30,11 +30,22 @@ if {{defined I3D_OS_IPHONE}}
 {
     files
     {
+        ["Heyzap Headers"]
+        (incoming/Headers)
+        "*.h"
         
         ["source"]
         (use_first_found, source/iphone, source/generic)
         Heyzap_platform.mm
         #Add any iphone-specific files here
+        HeyzapMarmaladeDelegate.h
+        HeyzapMarmaladeDelegate.mm
+    }
+
+    options
+    {
+        # include Heyzap.Framework here - $CWD is this .mkf file's dir
+        cflags="-F$CWD/incoming"
     }
 }
 

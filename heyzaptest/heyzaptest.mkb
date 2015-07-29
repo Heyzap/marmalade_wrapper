@@ -1,0 +1,14 @@
+#!/usr/bin/env mkb
+files
+{
+    heyzaptest.cpp
+}
+subproject ../Heyzap
+subprojects
+{
+    iwutil
+}
+
+deployment
+{
+}

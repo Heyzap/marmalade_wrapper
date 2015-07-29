@@ -23,6 +23,8 @@ static jmethodID g_HeyzapFetchRewarded;
 static jmethodID g_HeyzapShowRewarded;
 static jmethodID g_HeyzapStartTestActivity;
 
+
+// todo: we should return tags here (see this and Heyzap.java)
 void JNICALL Heyzap_nativeCallback(JNIEnv* env, jobject obj, jint status)
 {
     switch(status){
