@@ -1,12 +1,8 @@
+#import "s3eEdk.h"
+
 #import "HeyzapMarmaladeInterstitialDelegate.h"
 
-#include "Heyzap_internal.h"
-
-#include "s3eDebug.h"
-#include "s3eDevice.h"
-#include "s3eEdk.h"
-#include "s3eEdk_iphone.h"
-#include "IwDebug.h"
+#import "Heyzap_internal.h"
 
 @implementation HeyzapMarmaladeInterstitialDelegate
 /** The `HZAdsDelegate` protocol provides global information about our ads. If you want to know if we had an ad to show after calling `showAd` (for example, to fallback to another ads provider). It is recommend using the `showAd:completion:` method instead. */
@@ -17,9 +13,8 @@
  *  @param tag The identifier for the ad.
  */
 - (void)didShowAdWithTag: (NSString *) tag {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	NSLog(@"monroedebug: didShowAdWithTag: %@ tag_c: %s strlen(tag_c)=%d", tag, tag_c, (int)strlen(tag_c));
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, (void *)tag_c, strlen(tag_c));
+    const char *tag_c = [(tag ? tag : @"") UTF8String];
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, (void *)tag_c, strlen(tag_c));
 }
 
 /**
@@ -29,8 +24,8 @@
  *  @param error An NSError describing the error
  */
 - (void)didFailToShowAdWithTag: (NSString *) tag andError: (NSError *)error {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, (void *)tag_c, strlen(tag_c));
+    const char *tag_c = [(tag ? tag : @"") UTF8String];
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -40,9 +35,8 @@
  *  @param tag The identifier for the ad.
  */
 - (void)didReceiveAdWithTag: (NSString *) tag {
-	NSLog(@"monroedebug: didReceiveAdWithTag: %@", tag);
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, (void *)tag_c, strlen(tag_c));
+    const char *tag_c = [(tag ? tag : @"") UTF8String];
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -52,8 +46,8 @@
  *  @param tag The identifier for the ad.
  */
 - (void)didFailToReceiveAdWithTag: (NSString *) tag {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, (void *)tag_c, strlen(tag_c));
+    const char *tag_c = [(tag ? tag : @"") UTF8String];
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -63,8 +57,8 @@
  *  @param tag An identifier for the ad.
  */
 - (void)didClickAdWithTag: (NSString *) tag {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, (void *)tag_c, strlen(tag_c));
+    const char *tag_c = [(tag ? tag : @"") UTF8String];
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -74,8 +68,8 @@
  *  @param tag An identifier for the ad.
  */
 - (void)didHideAdWithTag: (NSString *) tag {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, (void *)tag_c, strlen(tag_c));
+    const char *tag_c = [(tag ? tag : @"") UTF8String];
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -83,7 +77,7 @@
  *  Called when an ad will use audio
  */
 - (void)willStartAudio {
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_STARTED);
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_STARTED);
 }
 
 
@@ -91,7 +85,7 @@
  *  Called when an ad will finish using audio
  */
 - (void) didFinishAudio {
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_FINISHED);
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_FINISHED);
 }
 
 @end

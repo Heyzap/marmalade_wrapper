@@ -4,6 +4,8 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
+
 
 #define CALLBACK_LOG_LIMIT 30
 
@@ -19,6 +21,25 @@ int loopCounter = 0;
 void * INTERSTITIAL = &INTERSTITIAL;
 void * VIDEO = &VIDEO;
 void * INCENTIVIZED = &INCENTIVIZED;
+void * NETWORK = &NETWORK;
+
+/* Utility methods */
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+
+
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
+    split(s, delim, elems);
+    return elems;
+}
+/* End utility methods */
 
 const char * callbackType(void * type) {
     if(type == INTERSTITIAL) {
@@ -33,7 +54,7 @@ const char * callbackType(void * type) {
         return "Incentivized";
     }
 
-    return "unk";
+    return "Network";
 }
 
 void setLastCallback(const char * callback) {
@@ -117,6 +138,17 @@ void didFailToCompleteAdWithTag(void* System, void* User)
     setLastCallbackAsStringWithTag("didFailToCompleteAdWithTag", tag, User);
 }
 
+void didReceiveNetworkCallback(void* System, void* User) 
+{
+    std::string str = (char *) System;
+    std::vector<std::string> networkAndCallback = split(str, ',');
+    if(networkAndCallback.size() == 2) {
+        setLastCallbackAsStringWithTag(networkAndCallback[0].c_str(), networkAndCallback[1].c_str(), User);
+    } else {
+        setLastCallbackAsStringWithTag("unknown", (char *)System, User);
+    }
+     
+}
 // Main entry point for the application
 int main()
 {   
@@ -150,6 +182,9 @@ int main()
     HeyzapRegister(HZINCENTIVIZED_AUDIO_FINISHED, (s3eCallback)didFinishAudio, INCENTIVIZED);
     HeyzapRegister(HZINCENTIVIZED_COMPLETE, (s3eCallback)didCompleteAdWithTag, INCENTIVIZED);
     HeyzapRegister(HZINCENTIVIZED_INCOMPLETE, (s3eCallback)didFailToCompleteAdWithTag, INCENTIVIZED);
+
+    HeyzapRegister(HZ_NETWORK_CALLBACK, (s3eCallback)didReceiveNetworkCallback, NETWORK);
+
 
     // Loop forever, until the user or the OS performs some action to quit the app
     while (!s3eDeviceCheckQuitRequest())
@@ -312,6 +347,8 @@ int main()
     HeyzapUnRegister(HZINCENTIVIZED_AUDIO_FINISHED, (s3eCallback)didFinishAudio);
     HeyzapUnRegister(HZINCENTIVIZED_COMPLETE, (s3eCallback)didCompleteAdWithTag);
     HeyzapUnRegister(HZINCENTIVIZED_INCOMPLETE, (s3eCallback)didFailToCompleteAdWithTag);
+
+    HeyzapUnRegister(HZ_NETWORK_CALLBACK, (s3eCallback)didReceiveNetworkCallback);
 
     
     // Return
