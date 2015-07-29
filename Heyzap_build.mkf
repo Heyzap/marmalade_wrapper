@@ -38,8 +38,8 @@ if {{defined I3D_OS_IPHONE}}
         (use_first_found, source/iphone, source/generic)
         Heyzap_platform.mm
         #Add any iphone-specific files here
-        HeyzapMarmaladeDelegate.h
-        HeyzapMarmaladeDelegate.mm
+        "*.h"
+        "*.mm"
     }
 
     options

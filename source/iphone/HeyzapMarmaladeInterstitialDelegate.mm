@@ -1,4 +1,4 @@
-#import "HeyzapMarmaladeDelegate.h"
+#import "HeyzapMarmaladeInterstitialDelegate.h"
 
 #include "Heyzap_internal.h"
 
@@ -8,7 +8,7 @@
 #include "s3eEdk_iphone.h"
 #include "IwDebug.h"
 
-@implementation HeyzapMarmaladeDelegate
+@implementation HeyzapMarmaladeInterstitialDelegate
 /** The `HZAdsDelegate` protocol provides global information about our ads. If you want to know if we had an ad to show after calling `showAd` (for example, to fallback to another ads provider). It is recommend using the `showAd:completion:` method instead. */
 
 /**
@@ -19,7 +19,7 @@
 - (void)didShowAdWithTag: (NSString *) tag {
 	const char *tag_c = [(tag ? tag : @"") UTF8String];
 	NSLog(@"monroedebug: didShowAdWithTag: %@ tag_c: %s strlen(tag_c)=%d", tag, tag_c, (int)strlen(tag_c));
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, SHOW, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, (void *)tag_c, strlen(tag_c));
 }
 
 /**
@@ -30,7 +30,7 @@
  */
 - (void)didFailToShowAdWithTag: (NSString *) tag andError: (NSError *)error {
 	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, FAILED_TO_SHOW, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -42,7 +42,7 @@
 - (void)didReceiveAdWithTag: (NSString *) tag {
 	NSLog(@"monroedebug: didReceiveAdWithTag: %@", tag);
 	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, AVAILABLE, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -53,7 +53,7 @@
  */
 - (void)didFailToReceiveAdWithTag: (NSString *) tag {
 	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, FAILED_TO_FETCH, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -64,7 +64,7 @@
  */
 - (void)didClickAdWithTag: (NSString *) tag {
 	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, CLICK, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -75,7 +75,7 @@
  */
 - (void)didHideAdWithTag: (NSString *) tag {
 	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HIDE, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, (void *)tag_c, strlen(tag_c));
 }
 
 
@@ -83,7 +83,7 @@
  *  Called when an ad will use audio
  */
 - (void)willStartAudio {
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, AUDIO_STARTED);
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_STARTED);
 }
 
 
@@ -91,25 +91,7 @@
  *  Called when an ad will finish using audio
  */
 - (void) didFinishAudio {
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, AUDIO_FINISHED);
-}
-
-
-
-
-/** The HZIncentivizedAdDelegate protocol provides global information about using an incentivized ad. If you want to give the user a reward
- after successfully finishing an incentivized ad, implement the didCompleteAd method */
-
-/** Called when a user successfully completes viewing an ad */
-- (void)didCompleteAdWithTag: (NSString *) tag {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, INCENTIVE_COMPLETE, (void *)tag_c, strlen(tag_c));
-}
-
-/** Called when a user does not complete the viewing of an ad */
-- (void)didFailToCompleteAdWithTag: (NSString *) tag {
-	const char *tag_c = [(tag ? tag : @"") UTF8String];
-	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, INCENTIVE_INCOMPLETE, (void *)tag_c, strlen(tag_c));
+	s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_FINISHED);
 }
 
 @end

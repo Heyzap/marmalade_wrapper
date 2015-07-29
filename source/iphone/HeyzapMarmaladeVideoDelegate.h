@@ -1,6 +1,6 @@
 #include "../../incoming/Headers/HeyzapAds.h"
 
-@interface HeyzapMarmaladeDelegate : NSObject <HZIncentivizedAdDelegate>
+@interface HeyzapMarmaladeVideoDelegate : NSObject <HZAdsDelegate>
 /** The `HZAdsDelegate` protocol provides global information about our ads. If you want to know if we had an ad to show after calling `showAd` (for example, to fallback to another ads provider). It is recommend using the `showAd:completion:` method instead. */
 
 /**
@@ -56,13 +56,4 @@
  */
 - (void) didFinishAudio;
 
-
-
-/** The HZIncentivizedAdDelegate protocol provides global information about using an incentivized ad. If you want to give the user a reward
- after successfully finishing an incentivized ad, implement the didCompleteAd method */
-
-/** Called when a user successfully completes viewing an ad */
-- (void)didCompleteAdWithTag: (NSString *) tag;
-/** Called when a user does not complete the viewing of an ad */
-- (void)didFailToCompleteAdWithTag: (NSString *) tag;
 @end

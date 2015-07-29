@@ -10,9 +10,15 @@
 #include "../../incoming/Headers/HeyzapAds.h"
 #include "../../incoming/Headers/HZLog.h"
 
-#include "HeyzapMarmaladeDelegate.h"
+#include "HeyzapMarmaladeInterstitialDelegate.h"
+#include "HeyzapMarmaladeVideoDelegate.h"
+#include "HeyzapMarmaladeIncentivizedDelegate.h"
 
-HeyzapMarmaladeDelegate * interstitialDelegate;
+ #define HZ_FRAMEWORK_MARMALADE @"marmalade"
+
+HeyzapMarmaladeInterstitialDelegate * interstitialDelegate;
+HeyzapMarmaladeVideoDelegate * videoDelegate;
+HeyzapMarmaladeIncentivizedDelegate * incentivizedDelegate;
 
 
 s3eResult HeyzapInit_platform()
@@ -29,16 +35,16 @@ void HeyzapTerminate_platform()
 void HeyzapStart_platform(const char* pubId)
 {
 	dispatch_sync(dispatch_get_main_queue(), ^{
-		[HeyzapAds setDebugLevel:HZDebugLevelVerbose];
-		[HeyzapAds startWithPublisherID:[[NSString alloc] initWithUTF8String:pubId] andOptions:nil andFramework:@"marmalade"];
+		interstitialDelegate = [[HeyzapMarmaladeInterstitialDelegate alloc] init];
+		videoDelegate = [[HeyzapMarmaladeVideoDelegate alloc] init];
+		incentivizedDelegate = [[HeyzapMarmaladeIncentivizedDelegate alloc] init];
 
-		interstitialDelegate = [[HeyzapMarmaladeDelegate alloc] init];
 		[HZInterstitialAd setDelegate: interstitialDelegate];
-		// todo: android does this too, but we should figure out a way to separate delegates per ad type
-		[HZVideoAd setDelegate: interstitialDelegate];
-		[HZIncentivizedAd setDelegate: interstitialDelegate];
+		[HZVideoAd setDelegate: videoDelegate];
+		[HZIncentivizedAd setDelegate: incentivizedDelegate];
 
-
+		[HeyzapAds setDebugLevel:HZDebugLevelVerbose];
+		[HeyzapAds startWithPublisherID:[[NSString alloc] initWithUTF8String:pubId] andOptions:nil andFramework:HZ_FRAMEWORK_MARMALADE];
 	});
 }
 
