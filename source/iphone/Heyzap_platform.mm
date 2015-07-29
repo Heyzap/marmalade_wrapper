@@ -10,8 +10,8 @@
 #include "s3eEdk.h"
 
 #include "Heyzap_internal.h"
-#include "../../incoming/Headers/HeyzapAds.h"
-#include "../../incoming/Headers/HZLog.h"
+// #include "../../incoming/Headers/HeyzapAds.h"
+// #include "../../incoming/Headers/HZLog.h"
 
 #include "HeyzapMarmaladeInterstitialDelegate.h"
 #include "HeyzapMarmaladeVideoDelegate.h"

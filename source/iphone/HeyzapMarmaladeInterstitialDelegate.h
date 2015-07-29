@@ -1,4 +1,4 @@
-#include "../../incoming/Headers/HeyzapAds.h"
+#include "../../incoming/HeyzapAds.framework/Headers/HeyzapAds.h"
 
 @interface HeyzapMarmaladeInterstitialDelegate : NSObject <HZAdsDelegate>
 /** The `HZAdsDelegate` protocol provides global information about our ads. If you want to know if we had an ad to show after calling `showAd` (for example, to fallback to another ads provider). It is recommend using the `showAd:completion:` method instead. */

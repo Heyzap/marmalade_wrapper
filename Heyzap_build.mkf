@@ -30,9 +30,9 @@ if {{defined I3D_OS_IPHONE}}
 {
     files
     {
-        ["Heyzap Headers"]
-        (incoming/Headers)
-        "*.h"
+        #["Heyzap Headers"]
+        #(incoming/HeyzapAds.framework/Headers)
+        #"*.h"
         
         ["source"]
         (use_first_found, source/iphone, source/generic)
