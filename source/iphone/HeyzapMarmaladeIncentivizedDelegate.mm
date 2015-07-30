@@ -13,7 +13,7 @@
  */
 - (void)didShowAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_SHOW, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_SHOW, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 /**
@@ -24,7 +24,7 @@
  */
 - (void)didFailToShowAdWithTag: (NSString *) tag andError: (NSError *)error {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_FAILED_TO_SHOW, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_FAILED_TO_SHOW, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -35,7 +35,7 @@
  */
 - (void)didReceiveAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_AVAILABLE, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_AVAILABLE, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -46,7 +46,7 @@
  */
 - (void)didFailToReceiveAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_FAILED_TO_FETCH, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_FAILED_TO_FETCH, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -57,7 +57,7 @@
  */
 - (void)didClickAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_CLICK, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_CLICK, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -68,7 +68,7 @@
  */
 - (void)didHideAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_HIDE, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_HIDE, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -94,13 +94,13 @@
 /** Called when a user successfully completes viewing an ad */
 - (void)didCompleteAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_COMPLETE, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_COMPLETE, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 /** Called when a user does not complete the viewing of an ad */
 - (void)didFailToCompleteAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_INCOMPLETE, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_INCOMPLETE, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 @end

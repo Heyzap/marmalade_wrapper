@@ -31,7 +31,7 @@ s3eResult HeyzapUnRegister(HeyzapCallback cbid, s3eCallback fn)
 void HeyzapRegisterExt()
 {
     /* fill in the function pointer struct for this extension */
-    void* funcPtrs[10];
+    void* funcPtrs[13];
     funcPtrs[0] = (void*)HeyzapRegister;
     funcPtrs[1] = (void*)HeyzapUnRegister;
     funcPtrs[2] = (void*)HeyzapStart;
@@ -41,12 +41,15 @@ void HeyzapRegisterExt()
     funcPtrs[6] = (void*)HeyzapShowVideo;
     funcPtrs[7] = (void*)HeyzapFetchRewarded;
     funcPtrs[8] = (void*)HeyzapShowRewarded;
-    funcPtrs[9] = (void*)HeyzapStartTestActivity;
+    funcPtrs[9] = (void*)HeyzapShowBanner;
+    funcPtrs[10] = (void*)HeyzapHideBanner;
+    funcPtrs[11] = (void*)HeyzapDestroyBanner;
+    funcPtrs[12] = (void*)HeyzapStartTestActivity;
 
     /*
      * Flags that specify the extension's use of locking and stackswitching
      */
-    int flags[10] = { 0 };
+    int flags[13] = { 0 };
 
     /*
      * Register the extension

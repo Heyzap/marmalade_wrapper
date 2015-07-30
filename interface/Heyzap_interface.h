@@ -14,6 +14,9 @@ typedef       void(*HeyzapFetchVideo_t)(const char* tag);
 typedef       void(*HeyzapShowVideo_t)(const char* tag);
 typedef       void(*HeyzapFetchRewarded_t)(const char* tag);
 typedef       void(*HeyzapShowRewarded_t)(const char* tag);
+typedef       void(*HeyzapShowBanner_t)(bool top, const char* tag);
+typedef       void(*HeyzapHideBanner_t)();
+typedef       void(*HeyzapDestroyBanner_t)();
 typedef       void(*HeyzapStartTestActivity_t)();
 
 /**
@@ -30,5 +33,8 @@ typedef struct HeyzapFuncs
     HeyzapShowVideo_t m_HeyzapShowVideo;
     HeyzapFetchRewarded_t m_HeyzapFetchRewarded;
     HeyzapShowRewarded_t m_HeyzapShowRewarded;
+    HeyzapShowBanner_t m_HeyzapShowBanner;
+    HeyzapHideBanner_t m_HeyzapHideBanner;
+    HeyzapDestroyBanner_t m_HeyzapDestroyBanner;
     HeyzapStartTestActivity_t m_HeyzapStartTestActivity;
 } HeyzapFuncs;

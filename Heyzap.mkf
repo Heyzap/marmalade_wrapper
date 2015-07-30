@@ -24,6 +24,25 @@ files
     Heyzap.defines.txt
 }
 
+
+assets
+{
+    # this is necessary for iOS UnityAds, but can't be in the iOS section of Heyzap_build.mkf for some reason.
+    (incoming)
+    UnityAds.bundle
+
+    #this is required for Vungle iOS, but can't be in the iOS section of Heyzap_build.mkf for some reason.
+    (incoming/VungleSDK.embeddedframework/VungleSDK.framework/Resources)
+    __vungle.db
+    Info.plist
+    vg_close.png
+    vg_cta.png
+    vg_mute_off.png
+    vg_mute_on.png
+    vg_privacy.png
+}
+
+
 defines
 {
     IW_TRACE_CHANNEL_HEYZAP_VERBOSE=2
@@ -46,10 +65,15 @@ deployments
 #lines will cause the extension builder to re-output this section.
 deployments
 {
-    #iphone-link-opts="-framework X" #Use this to bring in any additional link options needed
-    iphone-link-opts="-weak_framework Security -weak_framework iAd -weak_framework AdSupport -weak_framework CoreTelephony -framework EventKit -lxml2" #monroe added
+    # include Heyzap extension
     iphone-link-libdir="lib/iphone"
     iphone-link-lib="Heyzap"
-    iphone-link-opts="-F$CWD/incoming/ -framework HeyzapAds" #monroe added
-    
+
+    # The below adds all mediated networks and their required iOS frameworks
+    # "-F" flag adds a directory to the framework search path
+    iphone-link-opts="-ObjC -F$CWD/incoming/ -weak_framework Security -weak_framework iAd -weak_framework AdSupport -weak_framework CoreTelephony -framework EventKit -lxml2 -F$CWD/incoming/ -framework HeyzapAds -framework GoogleMobileAds -framework EventKitUI -framework AdColony -framework WebKit -framework Social -framework UnityAds -framework Chartboost -framework FBAudienceNetwork -framework CoreImage -framework HyprMX -F$CWD/incoming/VungleSDK.embeddedframework/ -framework VungleSDK -lsqlite3 -lz"
+
+    # AppLovin has a `.a` file, not a .framework
+    iphone-link-libdir = "incoming/AppLovin"
+    iphone-link-lib="AppLovinSdk" # marmalade prepends `lib` and prepends `.a` to this file name
 }

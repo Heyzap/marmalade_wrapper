@@ -1,3 +1,6 @@
+// to print things to the device log from here:
+// IwTrace(APP, ("format string %i %s", 42, "is the answer"));
+
 #include "s3e.h"
 #include "IwDebug.h"
 #include "Heyzap.h"
@@ -15,12 +18,15 @@ uint callbackCounter = 0;
 bool showInter = false;
 bool showVideo = false;
 bool showRewarded = false;
+bool showBanner = false;
+
 int loopCounter = 0;
 
 // these are used to identify the type of ad in a callback so we can reuse the methods that log them
 void * INTERSTITIAL = &INTERSTITIAL;
 void * VIDEO = &VIDEO;
 void * INCENTIVIZED = &INCENTIVIZED;
+void * BANNER = &BANNER;
 void * NETWORK = &NETWORK;
 
 /* Utility methods */
@@ -54,6 +60,10 @@ const char * callbackType(void * type) {
         return "Incentivized";
     }
 
+    if(type == BANNER) {
+        return "Banner";
+    }
+
     return "Network";
 }
 
@@ -81,7 +91,6 @@ void didShowAdWithTag(void* System, void* User)
 {
     char * tag = (char *) System;
     setLastCallbackAsStringWithTag("didShowAdWithTag", tag, User);
-    IwTrace(APP, ("didShowAdWithTag callback in heyzaptest - tag: %s strlen tag: %d", tag, strlen(tag)));
 }
 
 void didFailToShowAdWithTag(void* System, void* User)
@@ -149,6 +158,23 @@ void didReceiveNetworkCallback(void* System, void* User)
     }
      
 }
+
+void bannerDidReceiveAd(void* System, void* User) {
+    char * tag = (char *) System;
+    setLastCallbackAsStringWithTag("bannerDidReceiveAd", tag, User);
+}
+
+void bannerDidFailToReceiveAd(void* System, void* User) {
+    char * tag = (char *) System;
+    setLastCallbackAsStringWithTag("bannerDidFailToReceiveAd", tag, User);
+}
+
+void bannerWasClicked(void* System, void* User) {
+    char * tag = (char *) System;
+    setLastCallbackAsStringWithTag("bannerWasClicked", tag, User);
+}
+
+
 // Main entry point for the application
 int main()
 {   
@@ -183,6 +209,10 @@ int main()
     HeyzapRegister(HZINCENTIVIZED_COMPLETE, (s3eCallback)didCompleteAdWithTag, INCENTIVIZED);
     HeyzapRegister(HZINCENTIVIZED_INCOMPLETE, (s3eCallback)didFailToCompleteAdWithTag, INCENTIVIZED);
 
+    HeyzapRegister(HZBANNER_LOADED, (s3eCallback)bannerDidReceiveAd, BANNER);
+    HeyzapRegister(HZBANNER_ERROR, (s3eCallback)bannerDidFailToReceiveAd, BANNER);
+    HeyzapRegister(HZBANNER_CLICKED, (s3eCallback)bannerWasClicked, BANNER);
+
     HeyzapRegister(HZ_NETWORK_CALLBACK, (s3eCallback)didReceiveNetworkCallback, NETWORK);
 
 
@@ -194,9 +224,9 @@ int main()
         s3ePointerUpdate();
 
         s3eSurfaceClear(0,0,0);
-        int surfaceHeight = s3eSurfaceGetInt(S3E_SURFACE_HEIGHT); //pixels
-        int surfaceWidth = s3eSurfaceGetInt(S3E_SURFACE_WIDTH); //pixels
-        int surfacePitch = s3eSurfaceGetInt(S3E_SURFACE_PITCH); //number of bytes in a single horizontal row of the screen display
+        uint32 surfaceHeight = s3eSurfaceGetInt(S3E_SURFACE_HEIGHT); //pixels
+        uint32 surfaceWidth = s3eSurfaceGetInt(S3E_SURFACE_WIDTH); //pixels
+        uint32 surfacePitch = s3eSurfaceGetInt(S3E_SURFACE_PITCH); //number of bytes in a single horizontal row of the screen display
         
 
         s3eDebugPrintf(0, 20, false, (HeyzapAvailable() == S3E_TRUE) ? "Heyzap available!" : "Heyzap NOT available :(");
@@ -211,17 +241,17 @@ int main()
             if (s3ePointerGetTouchState(i) == S3E_POINTER_STATE_DOWN)
             {
                 showPressedUI = true;
-                int32 x = s3ePointerGetTouchX(i);
-                int32 y = s3ePointerGetTouchY(i);
+                uint32 x = s3ePointerGetTouchX(i);
+                uint32 y = s3ePointerGetTouchY(i);
                 // Screen is being touched at x, y
 
                 s3eDebugPrintf(surfaceWidth/4*3, 20 + 30*i, false, "#%d (%d,%d)", i+1,x,y);
 
                 // use height of first finger touch to determine if fetching/showing
                 if(i == 0 && y < surfaceHeight/2) {
-                    showInter = showVideo = showRewarded = false;
+                    showInter = showVideo = showRewarded = showBanner = false;
                 } else {
-                    showInter = showVideo = showRewarded = true;
+                    showInter = showVideo = showRewarded = showBanner = true;
                 }
             }
 
@@ -235,7 +265,6 @@ int main()
                         } else {
                             HeyzapFetchInterstitial("this_tag_is_on");
                         }
-                        showInter = !showInter;
                     }
                 break;
                 case 1:
@@ -247,7 +276,6 @@ int main()
                         } else {
                             HeyzapFetchVideo("this_tag_is_on");
                         }
-                        showVideo = !showVideo;
                     }
                 break;
                 case 2:
@@ -259,10 +287,20 @@ int main()
                         } else {
                             HeyzapFetchRewarded("this_tag_is_on");
                         }
-                        showRewarded = !showRewarded;
                     }
                 break;
                 case 3:
+                    if (s3ePointerGetTouchState(i) & S3E_POINTER_STATE_RELEASED)
+                    {
+                        processed = true;
+                        if(showBanner) {
+                            HeyzapShowBanner(false, "this_tag_is_on"); // first param: top == true, bottom == false
+                        } else {
+                            HeyzapDestroyBanner();
+                        }
+                    }
+                break;
+                case 4:
                 if (s3ePointerGetTouchState(i) & S3E_POINTER_STATE_RELEASED)
                     {
                         processed = true;
@@ -297,19 +335,20 @@ int main()
             // screen not pressed. show instructions and callbacks
 
             s3eDebugPrintf(0, 60, false, "Instructions: (Top half = fetch, bottom = show)");
-            s3eDebugPrintf(20, 90, false, "1 finger: interstitial");
-            s3eDebugPrintf(20, 120, false, "2 fingers: video");
-            s3eDebugPrintf(20, 150, false, "3 fingers: rewarded");
-            s3eDebugPrintf(20, 180, false, "4 fingers: mediation test suite");
+            s3eDebugPrintf(20, 100, false, "1 finger: interstitial");
+            s3eDebugPrintf(20, 140, false, "2 fingers: video");
+            s3eDebugPrintf(20, 180, false, "3 fingers: rewarded");
+            s3eDebugPrintf(20, 220, false, "4 fingers: banner (top = hide, bottom = show)");
+            s3eDebugPrintf(20, 260, false, "5 fingers: mediation test suite");
 
-            int callbacksStartHeight = 250;
+            int callbacksStartHeight = 340;
             int remainingScreenHeight = surfaceHeight - callbacksStartHeight;
             int numberOfCallbacksToShow = remainingScreenHeight / 40 + 1;
-            s3eDebugPrintf(0, 220, false, "Recent Callbacks: (showing %d)", numberOfCallbacksToShow );
+            s3eDebugPrintf(0, callbacksStartHeight - 40, false, "Recent Callbacks:");
 
             int callbacksShown = 0; 
             for(int index = callbacks.size() -1 ; index >= 0 && callbacksShown < numberOfCallbacksToShow; callbacksShown++, index--) {
-                s3eDebugPrintf(20, 250 + 40*callbacksShown, false, "%s", callbacks.at(index).c_str());
+                s3eDebugPrintf(20, callbacksStartHeight + 40*callbacksShown, false, "%s", callbacks.at(index).c_str());
             }
         }
 
@@ -347,6 +386,10 @@ int main()
     HeyzapUnRegister(HZINCENTIVIZED_AUDIO_FINISHED, (s3eCallback)didFinishAudio);
     HeyzapUnRegister(HZINCENTIVIZED_COMPLETE, (s3eCallback)didCompleteAdWithTag);
     HeyzapUnRegister(HZINCENTIVIZED_INCOMPLETE, (s3eCallback)didFailToCompleteAdWithTag);
+
+    HeyzapUnRegister(HZBANNER_LOADED, (s3eCallback)bannerDidReceiveAd);
+    HeyzapUnRegister(HZBANNER_ERROR, (s3eCallback)bannerDidFailToReceiveAd);
+    HeyzapUnRegister(HZBANNER_CLICKED, (s3eCallback)bannerWasClicked);
 
     HeyzapUnRegister(HZ_NETWORK_CALLBACK, (s3eCallback)didReceiveNetworkCallback);
 

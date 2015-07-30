@@ -23,6 +23,8 @@ enum HeyzapCallback{
 
 	HZINCENTIVIZED_SHOW, HZINCENTIVIZED_CLICK, HZINCENTIVIZED_HIDE, HZINCENTIVIZED_FAILED_TO_SHOW, HZINCENTIVIZED_AVAILABLE, HZINCENTIVIZED_FAILED_TO_FETCH, HZINCENTIVIZED_AUDIO_STARTED, HZINCENTIVIZED_AUDIO_FINISHED, HZINCENTIVIZED_COMPLETE, HZINCENTIVIZED_INCOMPLETE, 
 
+	HZBANNER_LOADED, HZBANNER_CLICKED, HZBANNER_ERROR,
+
 	HZ_NETWORK_CALLBACK,
 
 	HEYZAP_CALLBACK_MAX
@@ -80,6 +82,12 @@ void HeyzapShowVideo(const char* tag);
 void HeyzapFetchRewarded(const char* tag);
 
 void HeyzapShowRewarded(const char* tag);
+
+void HeyzapShowBanner(bool top, const char* tag);
+
+void HeyzapHideBanner();
+
+void HeyzapDestroyBanner();
 
 void HeyzapStartTestActivity();
 

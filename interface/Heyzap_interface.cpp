@@ -246,9 +246,69 @@ void HeyzapShowRewarded(const char* tag)
     return;
 }
 
+void HeyzapShowBanner(bool top, const char* tag)
+{
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[9] func: HeyzapShowBanner"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapShowBanner);
+#endif
+
+    g_Ext.m_HeyzapShowBanner(top, tag);
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapShowBanner);
+#endif
+
+    return;
+}
+
+void HeyzapHideBanner()
+{
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[10] func: HeyzapHideBanner"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapHideBanner);
+#endif
+
+    g_Ext.m_HeyzapHideBanner();
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapHideBanner);
+#endif
+
+    return;
+}
+
+void HeyzapDestroyBanner()
+{
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[11] func: HeyzapDestroyBanner"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapDestroyBanner);
+#endif
+
+    g_Ext.m_HeyzapDestroyBanner();
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapDestroyBanner);
+#endif
+
+    return;
+}
+
 void HeyzapStartTestActivity()
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[9] func: HeyzapStartTestActivity"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[12] func: HeyzapStartTestActivity"));
 
     if (!_extLoad())
         return;

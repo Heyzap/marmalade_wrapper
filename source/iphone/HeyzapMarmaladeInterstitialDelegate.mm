@@ -14,7 +14,7 @@
  */
 - (void)didShowAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 /**
@@ -25,7 +25,7 @@
  */
 - (void)didFailToShowAdWithTag: (NSString *) tag andError: (NSError *)error {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -36,7 +36,7 @@
  */
 - (void)didReceiveAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -47,7 +47,7 @@
  */
 - (void)didFailToReceiveAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -58,7 +58,7 @@
  */
 - (void)didClickAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 
@@ -69,7 +69,7 @@
  */
 - (void)didHideAdWithTag: (NSString *) tag {
     const char *tag_c = [(tag ? tag : @"") UTF8String];
-    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, (void *)tag_c, strlen(tag_c));
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, (void *)tag_c, (strlen(tag_c) + 1 /*Include `\0`*/));
 }
 
 

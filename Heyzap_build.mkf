@@ -30,9 +30,11 @@ if {{defined I3D_OS_IPHONE}}
 {
     files
     {
-        #["Heyzap Headers"]
-        #(incoming/HeyzapAds.framework/Headers)
-        #"*.h"
+        # these files included for AdMob banner support via Heyzap Mediation
+        ["AdMob"]
+        (incoming)
+        HZAdMobBannerSupport.h
+        HZAdMobBannerSupport.m
         
         ["source"]
         (use_first_found, source/iphone, source/generic)
@@ -41,11 +43,11 @@ if {{defined I3D_OS_IPHONE}}
         "*.h"
         "*.mm"
     }
-
     options
     {
-        # include Heyzap.Framework here - $CWD is this .mkf file's dir
-        cflags="-F$CWD/incoming"
+        # $CWD is this .mkf file's dir
+        cflags="-F$CWD/incoming/" #include this dir in the framework search paths so that `@import GoogleMobileAds` works in `HZAdMobBannerSupport.h`
+        cflags="-miphoneos-version-min=6.0 -fmodules" #AdMob's framework requires iOS 6 or greater in this build step. also needs modules enabled for `@import` statement
     }
 }
 
