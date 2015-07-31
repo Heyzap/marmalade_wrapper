@@ -18,23 +18,26 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 
 #### Android:
 1. First, you'll need the Android NDK to compile the native (C++) part of the extension. Then, in your `~/.bash_profile` or elsewhere, set the environment variable `NDK_ROOT` to the root of the installation:
-```shell
-export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
-```
+
+	```shell
+	export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
+	```
 1. You also want to use [JDK 1.7 (Java 7)](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) to compile the Java part of the extension. Otherwise, [Marmalade might freak out later](https://answers.madewithmarmalade.com/questions/30921/edk-android-unexpected-top-level-exception.html). To do this, set JAVA_HOME to your installation of JDK 1.7 prior to running the `mkb` commands below.
 1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. The former compiles the Java side of the extension, and the latter compiles the C++ side of the extension. ALternatively, you can run these commands directly:
-```shell
-mkb '/path/to/this/mkb/file/Heyzap_android_java.mkb'
-mkb '/path/to/this/mkb/file/Heyzap_android_.mkb'
-```
+
+    ```shell
+    mkb '/path/to/this/mkb/file/Heyzap_android_java.mkb'
+    mkb '/path/to/this/mkb/file/Heyzap_android_.mkb'
+    ```
 
 #### iOS:
 1. Open `Heyzap_iphone.mkb`. Because of a special instruction in this file, this should open Xcode. Alternatively, you can run this command directly:
-```shell
-mkb '/path/to/this/mkb/file/Heyzap_iphone.mkb' --buildenv=xcode
-```
+
+	```shell
+	mkb '/path/to/this/mkb/file/Heyzap_iphone.mkb' --buildenv=xcode
+	```
 1. Build the Xcode project that opens for you. It's located in `build_heyzap_iphone_iphone_xcode`. If there are no errors, this will update the lib at `lib/libHeyzap_d.a`
-    1. The `_d` designates that the lib was built in the "Debug" configuration. You can build the "Release" configuration by [changing the scheme of the build](http://stackoverflow.com/a/5387158/2544629). You should do both.
+	1. The `_d` designates that the lib was built in the "Debug" configuration. You can build the "Release" configuration by [changing the scheme of the build](http://stackoverflow.com/a/5387158/2544629). You should do both.
 
 
 ### Android specifics
@@ -45,8 +48,8 @@ mkb '/path/to/this/mkb/file/Heyzap_iphone.mkb' --buildenv=xcode
 1. Add any required manifest additions to an `xml` file in `android_manifests/` (permissions in `{network}.xml` and activities in `{network}_application.xml` is the naming convention, they are separate because they go in different sections of the manifest XML.
 1. Add the required manifest files as `android-extra-application-manifest=""` and `android-extra-manifest=""` in Heyzap.mkf
 1. If more changes need to be made to the manifest that don't go under the `<manifest>` or `<application>` tags, you'll need to add those to your app's manifest instead (see `heyzaptest/heyzap_manifest.xml`)
-    1. For example, AdColony and Chartboost require `android:hardwareAccelerated="true"` as an attribute of the `<application>` tag in the manifest. This has been added in the test app's manifest override.
-    1. In order to use this manifest instead of the Marmalade default, go to the Android configuration -> Advanced tab, and browse for your replacement manifest file. You should start with the Marmalade default file, which can be found at `/Applications/Marmalade.app/Contents/s3e/deploy/plugins/android/AndroidManifest.xml`.
+	1. For example, AdColony and Chartboost require `android:hardwareAccelerated="true"` as an attribute of the `<application>` tag in the manifest. This has been added in the test app's manifest override.
+	1. In order to use this manifest instead of the Marmalade default, go to the Android configuration -> Advanced tab, and browse for your replacement manifest file. You should start with the Marmalade default file, which can be found at `/Applications/Marmalade.app/Contents/s3e/deploy/plugins/android/AndroidManifest.xml`.
 
 **Note about Google Play Services:** If you update the `.jar` for Google Play Services (found at `{androidsdk-root}/extras/google/google_play_services/libproject/google-play-services_lib/libs`), also update the `version.xml` included with it in the `google-play-services_lib/res/values/` directory. 
 
@@ -63,23 +66,25 @@ mkb '/path/to/this/mkb/file/Heyzap_iphone.mkb' --buildenv=xcode
 ##### Networks that distribute a `libNetwork.a` file with an associated `Headers` directory
 1. Make a folder in `incoming/` for the network. Add the `.a` and the `Headers/` here.
 1. In the `deployments` section of `Heyzap.mkf`, add the folder using `iphone-link-libdir="your/directory/here" (relative to the `.mkf` file you're editing), and then add the lib with `iphone-link-lib=Network`. Marmalade will automatically add the `lib` and the `.a` to `Network` in this latter addition. Example:
-```
-	# AppLovin has a `.a` file, not a .framework
+
+    ```
+    # AppLovin has a `.a` file, not a .framework
     iphone-link-libdir = "incoming/AppLovin"
     iphone-link-lib="AppLovinSdk" # marmalade prepends `lib` and prepends `.a` to this file name
-```
+    ```
 
 ##### Networks that don't play nicely
 1. Take whatever files the network requires (i.e.: `UnityAds.bundle`, Vungle's PNGs and `.db` files) and try adding them to `Heyzap.mkf`'s `assets` section. The format is:
-```
-assets
-{
+
+    ```
+    assets
+    {
 	["Name_of_the_folder_in_Xcode_that_will_contain_these_assets"]
 	(filepath/relative/to/this/file/that/contains/assets)
 	Asset.png
 	OtherAsset.bundle
-}
-```
+    }
+    ```
 1. Cross your fingers. 
 1. If this doesn't work (it won't for code that needs to be compiled with the extension, for example), you can try adding the files to `Heyzap_build.mkf` in the iOS `files` section, using a similar format. We had to do this with the `HZAdMobBannerSupport.h/m` files that are currently required for AdMob banners via HeyzapMediation. YMMV.
 
@@ -95,7 +100,7 @@ There is a test app in this repo, in the top-level directory named `heyzaptest`,
 1. Click the "Build" button in the Marmalade Hub. See the full log for details in case of a failure.
 1. Click the "Package, Install" (or whatever you have the button set to do). Again, see the full log in case of failure.
 1. Use the test app on the device.
-    1. The UI is lacking on the test app. You can see the code for it in `heyzaptest/heyzaptest.cpp`. Feel free to improve on it.
+	1. The UI is lacking on the test app. You can see the code for it in `heyzaptest/heyzaptest.cpp`. Feel free to improve on it.
 
 
 ## Currently tested / included SDK versions:
