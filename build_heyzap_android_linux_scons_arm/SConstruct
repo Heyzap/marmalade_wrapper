@@ -13,10 +13,10 @@ from os.path import join
 
 SetOption("implicit_cache" ,1)
 
-target_name = '/Users/heyzap2/Desktop/Heyzap2/lib/android/libHeyzap.so'
-target_name_debug = '/Users/heyzap2/Desktop/Heyzap2/lib/android/libHeyzap_d.so'
-target_name_rvct = '/Users/heyzap2/Desktop/Heyzap2/lib/android/libHeyzap.so'
-target_name_debug_rvct = '/Users/heyzap2/Desktop/Heyzap2/lib/android/libHeyzap_d.so'
+target_name = '/Users/monroe/dev/marmalade_wrapper/lib/android/libHeyzap.so'
+target_name_debug = '/Users/monroe/dev/marmalade_wrapper/lib/android/libHeyzap_d.so'
+target_name_rvct = '/Users/monroe/dev/marmalade_wrapper/lib/android/libHeyzap.so'
+target_name_debug_rvct = '/Users/monroe/dev/marmalade_wrapper/lib/android/libHeyzap_d.so'
 sdk_root = '/Applications/Marmalade.app/Contents'
 
 scons_version = SCons.__version__.split(".")[:2]
@@ -44,21 +44,21 @@ def SplitN(str):
     return filter(lambda x: x, str.split("\n"))
 
 includes = SplitN(r'''
-../source/h
-../h
+/Users/monroe/dev/marmalade_wrapper/source/h
+/Users/monroe/dev/marmalade_wrapper/h
 /Applications/Marmalade.app/Contents/s3e/edk/h
 /Applications/Marmalade.app/Contents/s3e/h
 /Applications/Marmalade.app/Contents/s3e/h/ext
 /Applications/Marmalade.app/Contents/modules/iwutil/h
 /Applications/Marmalade.app/Contents/modules/iwcore/h
-../../../Downloads/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/include
-../../../Downloads/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi/include
-../../../Downloads/android-ndk-r10d/platforms/android-14/arch-arm/usr/include
+/Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/include
+/Users/monroe/Library/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/include
+/Users/monroe/Library/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi/include
 ''')
 
 libraries = SplitN(r'''
 edk
-libplaceholderplaceholderplaceholderplaceholderplaceholder
+placeholderplaceholderplaceholderplaceholderplaceholder
 c
 m
 log
@@ -68,7 +68,7 @@ gcc
 
 libraries_d = SplitN(r'''
 edk
-libplaceholderplaceholderplaceholderplaceholderplaceholder
+placeholderplaceholderplaceholderplaceholderplaceholder
 c
 m
 log
@@ -77,8 +77,8 @@ gcc
 ''')
 
 libraries_rvct = SplitN(r'''
-edk
-libplaceholderplaceholderplaceholderplaceholderplaceholder
+edk.a
+placeholderplaceholderplaceholderplaceholderplaceholder.a
 c
 m
 log
@@ -87,8 +87,8 @@ gcc
 ''')
 
 libraries_rvct_d = SplitN(r'''
-edk
-libplaceholderplaceholderplaceholderplaceholderplaceholder
+edk.a
+placeholderplaceholderplaceholderplaceholderplaceholder.a
 c
 m
 log
@@ -102,14 +102,14 @@ extra_objects = SplitN(r'''
 
 libpath = SplitN(r'''
 /Applications/Marmalade.app/Contents/s3e/edk/lib/android
-/Users/heyzap2/Downloads/android-ndk-r10d/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi
-/Users/heyzap2/Downloads/android-ndk-r10d/platforms/android-14/arch-arm/usr/lib
+/Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib
+/Users/monroe/Library/Android/android-ndk-r10e/sources/cxx-stl/gnu-libstdc++/4.8/libs/armeabi
 ''')
 
 Extensions_sources = SplitN(r'''
-../source/android/Heyzap_platform.cpp
-../source/generic/Heyzap.cpp
-../source/generic/Heyzap_register.cpp
+/Users/monroe/dev/marmalade_wrapper/source/android/Heyzap_platform.cpp
+/Users/monroe/dev/marmalade_wrapper/source/generic/Heyzap.cpp
+/Users/monroe/dev/marmalade_wrapper/source/generic/Heyzap_register.cpp
 ''')
 
 
@@ -173,7 +173,7 @@ for export in exports:
 
 arch = "ARM"
 
-gcc_variants = ["gcc", "arm-none-linux-gnueabi-gcc", "arm-linux-gnu-gcc", "arm-none-eabi-gcc", 'mipsel-linux-uclibc-gcc', 'mips-linux-gnu-gcc', 'clang', 'i686-linux-android-gcc', 'i386-linux-gnueabi-gcc']
+gcc_variants = ["gcc", "arm-none-linux-gnueabi-gcc", "arm-linux-gnu-gcc", "arm-none-eabi-gcc", "aarch64-none-elf-gcc", "mipsel-linux-uclibc-gcc", "mips-linux-gnu-gcc", "clang", "i686-linux-android-gcc", "i386-linux-gnueabi-gcc", "x86_64-nacl-gcc"]
 
 #
 # Figure out what compiler to use
@@ -194,7 +194,7 @@ else:
 
 
 paths = [
-    r'/Users/heyzap2/Downloads/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/bin',
+    r'/Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin',
     r'/Applications/Xcode.app/Contents/Developer/usr/bin',
     r'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin',
     r'/opt/local/bin',
@@ -254,7 +254,7 @@ if compiler == "rvct":
 
 
 if compiler == 'rvct':
-    env.Append(LINKFLAGS=[])
+    env.Append(LINKFLAGS=['-fuse-ld=bfd', '--sysroot=/Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm'])
     if env['debug']:
         env.Append(CCFLAGS=['-g', '-O0', '--no_inline', '--preinclude=temp_defines_debug.h'])
         env.Append(LINKFLAGS=[])
@@ -262,7 +262,7 @@ if compiler == 'rvct':
     else:
         env.Append(CCFLAGS=['-Otime', '-O3', '--preinclude=temp_defines_release.h'])
         env.Append(LINKFLAGS=[])
-    env.Append(CCFLAGS=['--split_sections', '--diag_remark=1,9,111,128,174,177,196,381,550,611,815,1293,1294,1295,1299,1300,1304,3052', '--no_exceptions', '--apcs=/interwork'])
+    env.Append(CCFLAGS=['--split_sections', '--diag_remark=1,9,111,128,174,177,196,381,550,611,815,1293,1294,1295,1299,1300,1304,3052', '--no_exceptions', '--cpu=6', '--fpu=softvfp+vfpv2', '--apcs=/interwork'])
     env.Append(CFLAGS=[])
     env.Append(CXXFLAGS=['--cpp'])
     env['ARFLAGS'] = ['--create']
@@ -273,15 +273,15 @@ if compiler == 'rvct':
     env['SHCCFLAGS'] = SCons.Util.CLVar('$CCFLAGS -fPIC')
 
 else:
-    env.Append(LINKFLAGS=['-Wl,-Bsymbolic', '-Wl,--no-undefined', '--sysroot="/Users/heyzap2/Downloads/android-ndk-r10d/platforms/android-14/arch-arm"', '-mthumb-interwork'])
+    env.Append(LINKFLAGS=['-Wl,-Bsymbolic', '-Wl,--no-undefined', '-fuse-ld=bfd', '--sysroot=/Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm', '-march=armv6', '-mfpu=vfp', '-mfloat-abi=softfp', '-mthumb-interwork'])
     if env['debug']:
         env.Append(CCFLAGS=['-g', '-O0', '-include', 'temp_defines_debug.h'])
-        env.Append(LINKFLAGS=['-Wl,-Map="/Users/heyzap2/Desktop/Heyzap2/lib/android/libHeyzap_d.map"'])
+        env.Append(LINKFLAGS=['-Wl,-Map="/Users/monroe/dev/marmalade_wrapper/lib/android/libHeyzap_d.map"'])
         env.Append(PLFLAGS=[])
     else:
         env.Append(CCFLAGS=['-O3', '-include', 'temp_defines_release.h'])
-        env.Append(LINKFLAGS=['-Wl,-Map="/Users/heyzap2/Desktop/Heyzap2/lib/android/libHeyzap.map"'])
-    env.Append(CCFLAGS=['-fsigned-char', '-fno-strict-aliasing', '-Wno-psabi', '-fvisibility=hidden', '-fno-short-enums', '-Wall', '-fomit-frame-pointer', '-fmessage-length=0', '-Wno-unused', '-Wno-parentheses', '-pipe', '-mthumb-interwork'])
+        env.Append(LINKFLAGS=['-Wl,-Map="/Users/monroe/dev/marmalade_wrapper/lib/android/libHeyzap.map"'])
+    env.Append(CCFLAGS=['-fsigned-char', '-fno-strict-aliasing', '-Wno-psabi', '-fvisibility=hidden', '-fno-short-enums', '-Wall', '-fomit-frame-pointer', '-fmessage-length=0', '-Wno-unused', '-Wno-parentheses', '-pipe', '-mstructure-size-boundary=8', '-march=armv6', '-mfpu=vfp', '-mfloat-abi=softfp', '-mthumb-interwork'])
     env.Append(CFLAGS=['-std=gnu99'])
     env.Append(CXXFLAGS=['-fno-exceptions'])
     env['ARFLAGS'] = ['rc']
@@ -607,7 +607,7 @@ if default_target:
     # Uncoment this if you always want to link the final target
     #env.AlwaysBuild(default_target)
 
-if compiler in ['rvct', 'msvc', 'i686-linux-android-gcc', 'i386-linux-gnueabi-gcc']:
+if compiler in ['rvct', 'msvc', 'i386-linux-gnueabi-gcc']:
     strip = 0
 
 if strip:

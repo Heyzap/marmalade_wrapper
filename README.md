@@ -17,6 +17,10 @@ Everything else is auto-generated / internal to Marmalade.
 Once you make changes to the wrapper, you must re-compile the wrapper into the library file that will be used by developers. Instructions on how to do this for each platform are below.
 
 #### Android:
+1. First, you'll need the Android NDK to compile the native (C) part of the extension. Then, in your `~/.bash_profile` or elsewhere, set the environment variable `NDK_ROOT` to the root of the installation:
+```shell
+export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
+```
 1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. (TODO: This process is yet to be confirmed)
 
 #### iOS:

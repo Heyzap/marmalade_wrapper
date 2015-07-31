@@ -16,6 +16,9 @@
 #ifndef IW_DEBUG
 #   define IW_DEBUG 1
 #endif
+#ifndef IW_MKF_ANDROID_ENV
+#   define IW_MKF_ANDROID_ENV 1
+#endif
 #ifndef IW_MKF_EDK
 #   define IW_MKF_EDK 1
 #endif
@@ -46,9 +49,25 @@
 #ifndef S3E_ANDROID
 #   define S3E_ANDROID 1
 #endif
+#ifndef S3E_ANDROID_NDK_API
+#   define S3E_ANDROID_NDK_API 14
+#endif
+#ifndef S3E_ANDROID_NDK_VER
+#   define S3E_ANDROID_NDK_VER 10
+#endif
 #ifndef S3E_BUILD_EXT
 #   define S3E_BUILD_EXT 1
 #endif
 #ifndef S3E_EXT_HEYZAP
 #   define S3E_EXT_HEYZAP 1
+#endif
+
+/* including "extra_body" specified by the mkb plugin */
+
+#if !defined I3D_ARCH_32_BIT && !defined I3D_ARCH_64_BIT
+    #if defined I3D_ARCH_AARCH64 || defined I3D_ARCH_AMD64
+        #define I3D_ARCH_64_BIT
+    #else
+        #define I3D_ARCH_32_BIT
+    #endif
 #endif

@@ -129,6 +129,22 @@ class Heyzap
             IncentivizedAd.display(LoaderAPI.getActivity(), tag);
         }
     }
+    public void HeyzapShowBanner(boolean top, String tag)
+    {
+        if(tag.isEmpty()){
+            IncentivizedAd.display(LoaderAPI.getActivity());
+        }else{
+            IncentivizedAd.display(LoaderAPI.getActivity(), tag);
+        }
+    }
+    public void HeyzapHideBanner()
+    {
+        HeyzapAds.startTestActivity(LoaderAPI.getActivity());
+    }
+    public void HeyzapDestroyBanner()
+    {
+        HeyzapAds.startTestActivity(LoaderAPI.getActivity());
+    }
     public void HeyzapStartTestActivity()
     {
         HeyzapAds.startTestActivity(LoaderAPI.getActivity());

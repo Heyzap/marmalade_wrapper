@@ -21,6 +21,9 @@ static jmethodID g_HeyzapFetchVideo;
 static jmethodID g_HeyzapShowVideo;
 static jmethodID g_HeyzapFetchRewarded;
 static jmethodID g_HeyzapShowRewarded;
+static jmethodID g_HeyzapShowBanner;
+static jmethodID g_HeyzapHideBanner;
+static jmethodID g_HeyzapDestroyBanner;
 static jmethodID g_HeyzapStartTestActivity;
 
 
@@ -29,34 +32,34 @@ void JNICALL Heyzap_nativeCallback(JNIEnv* env, jobject obj, jint status)
 {
     switch(status){
         case 0:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, SHOW, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, NULL, 0);
         break;
         case 1:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, CLICK, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, NULL, 0);
         break;
         case 2:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HIDE, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, NULL, 0);
         break;
         case 3:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, FAILED_TO_SHOW, NULL, 0);   
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, NULL, 0);   
         break;
         case 4:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, AVAILABLE, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, NULL, 0);
         break;
         case 5:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, FAILED_TO_FETCH, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, NULL, 0);
         break;
         case 6:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, AUDIO_STARTED, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_STARTED, NULL, 0);
         break;
         case 7:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, AUDIO_FINISHED, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_FINISHED, NULL, 0);
         break;
         case 8:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, INCENTIVE_COMPLETE, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_COMPLETE, NULL, 0);
         break;
         case 9:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, INCENTIVE_INCOMPLETE, NULL, 0);
+        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_INCOMPLETE, NULL, 0);
         break;
     }
 }
@@ -110,6 +113,18 @@ s3eResult HeyzapInit_platform()
 
     g_HeyzapShowRewarded = env->GetMethodID(cls, "HeyzapShowRewarded", "(Ljava/lang/String;)V");
     if (!g_HeyzapShowRewarded)
+        goto fail;
+
+    g_HeyzapShowBanner = env->GetMethodID(cls, "HeyzapShowBanner", "(ZLjava/lang/String;)V");
+    if (!g_HeyzapShowBanner)
+        goto fail;
+
+    g_HeyzapHideBanner= env->GetMethodID(cls, "HeyzapHideBanner", "()V");
+    if (!g_HeyzapHideBanner)
+        goto fail;
+
+    g_HeyzapDestroyBanner = env->GetMethodID(cls, "HeyzapDestroyBanner", "()V");
+    if (!g_HeyzapDestroyBanner)
         goto fail;
 
     g_HeyzapStartTestActivity = env->GetMethodID(cls, "HeyzapStartTestActivity", "()V");
@@ -204,6 +219,25 @@ void HeyzapShowRewarded_platform(const char* tag)
     JNIEnv* env = s3eEdkJNIGetEnv();
     jstring tag_jstr = env->NewStringUTF(tag);
     env->CallVoidMethod(g_Obj, g_HeyzapShowRewarded, tag_jstr);
+}
+
+void HeyzapShowBanner_platform(bool top, const char* tag)
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    jstring tag_jstr = env->NewStringUTF(tag);
+    env->CallVoidMethod(g_Obj, g_HeyzapShowBanner, (jboolean)top, tag_jstr);
+}
+
+void HeyzapHideBanner_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_HeyzapHideBanner);
+}
+
+void HeyzapDestroyBanner_platform()
+{
+    JNIEnv* env = s3eEdkJNIGetEnv();
+    env->CallVoidMethod(g_Obj, g_HeyzapDestroyBanner);
 }
 
 void HeyzapStartTestActivity_platform()
