@@ -27,40 +27,28 @@ static jmethodID g_HeyzapDestroyBanner;
 static jmethodID g_HeyzapStartTestActivity;
 
 
-// todo: we should return tags here (see this and Heyzap.java)
-void JNICALL Heyzap_nativeCallback(JNIEnv* env, jobject obj, jint status)
+void JNICALL Heyzap_nativeCallback(JNIEnv* env, jobject obj, jint callbackIndex, jstring callbackData)
 {
-    switch(status){
-        case 0:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_SHOW, NULL, 0);
-        break;
-        case 1:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_CLICK, NULL, 0);
-        break;
-        case 2:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_HIDE, NULL, 0);
-        break;
-        case 3:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_SHOW, NULL, 0);   
-        break;
-        case 4:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AVAILABLE, NULL, 0);
-        break;
-        case 5:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_FAILED_TO_FETCH, NULL, 0);
-        break;
-        case 6:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_STARTED, NULL, 0);
-        break;
-        case 7:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINTERSTITIAL_AUDIO_FINISHED, NULL, 0);
-        break;
-        case 8:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_COMPLETE, NULL, 0);
-        break;
-        case 9:
-        s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, HZINCENTIVIZED_INCOMPLETE, NULL, 0);
-        break;
+    const char *callbackDataChars;
+    int callbackDataLength;
+
+    if(callbackData == NULL)
+    {
+        callbackDataChars = NULL;
+        callbackDataLength = 0;
+    }
+    else
+    {
+        callbackDataChars = env->GetStringUTFChars(callbackData, NULL);
+        callbackDataLength = env->GetStringUTFLength(callbackData) + 1; // Include \0
+    }
+    
+    // the callbackIndex sent in Heyzap.java is the ordinal from the same enum used for the callbacks in C here
+    s3eEdkCallbacksEnqueue(S3E_EXT_HEYZAP_HASH, (HeyzapCallback)callbackIndex, (void  *)callbackDataChars, callbackDataLength);
+
+    if(callbackData != NULL)
+    {
+        env->ReleaseStringUTFChars(callbackData, callbackDataChars);
     }
 }
 
@@ -133,7 +121,7 @@ s3eResult HeyzapInit_platform()
 
     static const JNINativeMethod methods[] =
     {
-        {"nativeCallback","(I)V",(void*)&Heyzap_nativeCallback}
+        {"nativeCallback","(ILjava/lang/String;)V",(void*)&Heyzap_nativeCallback}
     };
 
     // Register the native hooks

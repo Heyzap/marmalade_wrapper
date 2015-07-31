@@ -40,6 +40,9 @@ Discarded input sections
  .group         0x0000000000000000        0x8 debug/Heyzap_platform.os
  .group         0x0000000000000000        0x8 debug/Heyzap_platform.os
  .group         0x0000000000000000        0x8 debug/Heyzap_platform.os
+ .group         0x0000000000000000        0x8 debug/Heyzap_platform.os
+ .group         0x0000000000000000        0x8 debug/Heyzap_platform.os
+ .group         0x0000000000000000        0x8 debug/Heyzap_platform.os
  .note.GNU-stack
                 0x0000000000000000        0x0 debug/Heyzap_platform.os
  .note.GNU-stack
@@ -184,7 +187,7 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
  *(.iplt)
  .iplt          0x0000000000001390        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
 
-.text           0x0000000000001390     0x431c
+.text           0x0000000000001390     0x4204
  *(.text.unlikely .text.*_unlikely .text.unlikely.*)
  *(.text.exit .text.exit.*)
  .text.exit     0x0000000000001390       0x10 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
@@ -197,253 +200,262 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
  .text          0x0000000000001428       0x34 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
                 0x0000000000001428                __atexit_handler_wrapper
                 0x000000000000143c                atexit
- .text          0x000000000000145c      0xda8 debug/Heyzap_platform.os
-                0x0000000000001560                Heyzap_nativeCallback(_JNIEnv*, _jobject*, int)
-                0x00000000000017e8                HeyzapInit_platform()
-                0x0000000000001ddc                HeyzapTerminate_platform()
-                0x0000000000001e24                HeyzapStart_platform(char const*)
-                0x0000000000001e84                HeyzapFetchInterstitial_platform(char const*)
-                0x0000000000001ee4                HeyzapShowInterstitial_platform(char const*)
-                0x0000000000001f44                HeyzapFetchVideo_platform(char const*)
-                0x0000000000001fa4                HeyzapShowVideo_platform(char const*)
-                0x0000000000002004                HeyzapFetchRewarded_platform(char const*)
-                0x0000000000002064                HeyzapShowRewarded_platform(char const*)
-                0x00000000000020c4                HeyzapShowBanner_platform(bool, char const*)
-                0x000000000000212c                HeyzapHideBanner_platform()
-                0x0000000000002174                HeyzapDestroyBanner_platform()
-                0x00000000000021bc                HeyzapStartTestActivity_platform()
+ .text          0x000000000000145c      0xbe0 debug/Heyzap_platform.os
+                0x0000000000001560                Heyzap_nativeCallback(_JNIEnv*, _jobject*, int, _jstring*)
+                0x0000000000001620                HeyzapInit_platform()
+                0x0000000000001c14                HeyzapTerminate_platform()
+                0x0000000000001c5c                HeyzapStart_platform(char const*)
+                0x0000000000001cbc                HeyzapFetchInterstitial_platform(char const*)
+                0x0000000000001d1c                HeyzapShowInterstitial_platform(char const*)
+                0x0000000000001d7c                HeyzapFetchVideo_platform(char const*)
+                0x0000000000001ddc                HeyzapShowVideo_platform(char const*)
+                0x0000000000001e3c                HeyzapFetchRewarded_platform(char const*)
+                0x0000000000001e9c                HeyzapShowRewarded_platform(char const*)
+                0x0000000000001efc                HeyzapShowBanner_platform(bool, char const*)
+                0x0000000000001f64                HeyzapHideBanner_platform()
+                0x0000000000001fac                HeyzapDestroyBanner_platform()
+                0x0000000000001ff4                HeyzapStartTestActivity_platform()
  .text._ZN7_JNIEnv9FindClassEPKc
-                0x0000000000002204       0x38 debug/Heyzap_platform.os
-                0x0000000000002204                _JNIEnv::FindClass(char const*)
+                0x000000000000203c       0x38 debug/Heyzap_platform.os
+                0x000000000000203c                _JNIEnv::FindClass(char const*)
  .text._ZN7_JNIEnv17ExceptionOccurredEv
-                0x000000000000223c       0x30 debug/Heyzap_platform.os
-                0x000000000000223c                _JNIEnv::ExceptionOccurred()
+                0x0000000000002074       0x30 debug/Heyzap_platform.os
+                0x0000000000002074                _JNIEnv::ExceptionOccurred()
  .text._ZN7_JNIEnv17ExceptionDescribeEv
-                0x000000000000226c       0x28 debug/Heyzap_platform.os
-                0x000000000000226c                _JNIEnv::ExceptionDescribe()
+                0x00000000000020a4       0x28 debug/Heyzap_platform.os
+                0x00000000000020a4                _JNIEnv::ExceptionDescribe()
  .text._ZN7_JNIEnv14ExceptionClearEv
-                0x0000000000002294       0x28 debug/Heyzap_platform.os
-                0x0000000000002294                _JNIEnv::ExceptionClear()
+                0x00000000000020cc       0x28 debug/Heyzap_platform.os
+                0x00000000000020cc                _JNIEnv::ExceptionClear()
  .text._ZN7_JNIEnv12NewGlobalRefEP8_jobject
-                0x00000000000022bc       0x38 debug/Heyzap_platform.os
-                0x00000000000022bc                _JNIEnv::NewGlobalRef(_jobject*)
+                0x00000000000020f4       0x38 debug/Heyzap_platform.os
+                0x00000000000020f4                _JNIEnv::NewGlobalRef(_jobject*)
  .text._ZN7_JNIEnv15DeleteGlobalRefEP8_jobject
-                0x00000000000022f4       0x30 debug/Heyzap_platform.os
-                0x00000000000022f4                _JNIEnv::DeleteGlobalRef(_jobject*)
+                0x000000000000212c       0x30 debug/Heyzap_platform.os
+                0x000000000000212c                _JNIEnv::DeleteGlobalRef(_jobject*)
  .text._ZN7_JNIEnv14DeleteLocalRefEP8_jobject
-                0x0000000000002324       0x30 debug/Heyzap_platform.os
-                0x0000000000002324                _JNIEnv::DeleteLocalRef(_jobject*)
+                0x000000000000215c       0x30 debug/Heyzap_platform.os
+                0x000000000000215c                _JNIEnv::DeleteLocalRef(_jobject*)
  .text._ZN7_JNIEnv9NewObjectEP7_jclassP10_jmethodIDz
-                0x0000000000002354       0x58 debug/Heyzap_platform.os
-                0x0000000000002354                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
+                0x000000000000218c       0x58 debug/Heyzap_platform.os
+                0x000000000000218c                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
  .text._ZN7_JNIEnv11GetMethodIDEP7_jclassPKcS3_
-                0x00000000000023ac       0x48 debug/Heyzap_platform.os
-                0x00000000000023ac                _JNIEnv::GetMethodID(_jclass*, char const*, char const*)
+                0x00000000000021e4       0x48 debug/Heyzap_platform.os
+                0x00000000000021e4                _JNIEnv::GetMethodID(_jclass*, char const*, char const*)
  .text._ZN7_JNIEnv14CallVoidMethodEP8_jobjectP10_jmethodIDz
-                0x00000000000023f4       0x4c debug/Heyzap_platform.os
-                0x00000000000023f4                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
+                0x000000000000222c       0x4c debug/Heyzap_platform.os
+                0x000000000000222c                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
  .text._ZN7_JNIEnv12NewStringUTFEPKc
-                0x0000000000002440       0x38 debug/Heyzap_platform.os
-                0x0000000000002440                _JNIEnv::NewStringUTF(char const*)
+                0x0000000000002278       0x38 debug/Heyzap_platform.os
+                0x0000000000002278                _JNIEnv::NewStringUTF(char const*)
+ .text._ZN7_JNIEnv18GetStringUTFLengthEP8_jstring
+                0x00000000000022b0       0x38 debug/Heyzap_platform.os
+                0x00000000000022b0                _JNIEnv::GetStringUTFLength(_jstring*)
+ .text._ZN7_JNIEnv17GetStringUTFCharsEP8_jstringPh
+                0x00000000000022e8       0x40 debug/Heyzap_platform.os
+                0x00000000000022e8                _JNIEnv::GetStringUTFChars(_jstring*, unsigned char*)
+ .text._ZN7_JNIEnv21ReleaseStringUTFCharsEP8_jstringPKc
+                0x0000000000002328       0x38 debug/Heyzap_platform.os
+                0x0000000000002328                _JNIEnv::ReleaseStringUTFChars(_jstring*, char const*)
  .text._ZN7_JNIEnv15RegisterNativesEP7_jclassPK15JNINativeMethodi
-                0x0000000000002478       0x48 debug/Heyzap_platform.os
-                0x0000000000002478                _JNIEnv::RegisterNatives(_jclass*, JNINativeMethod const*, int)
+                0x0000000000002360       0x48 debug/Heyzap_platform.os
+                0x0000000000002360                _JNIEnv::RegisterNatives(_jclass*, JNINativeMethod const*, int)
  .text._ZN7_JavaVM6GetEnvEPPvi
-                0x00000000000024c0       0x40 debug/Heyzap_platform.os
-                0x00000000000024c0                _JavaVM::GetEnv(void**, int)
- .text          0x0000000000002500      0x134 debug/Heyzap.os
-                0x0000000000002500                HeyzapInit()
-                0x0000000000002514                HeyzapTerminate()
-                0x0000000000002520                HeyzapStart
-                0x000000000000253c                HeyzapFetchInterstitial
-                0x0000000000002558                HeyzapShowInterstitial
-                0x0000000000002574                HeyzapFetchVideo
-                0x0000000000002590                HeyzapShowVideo
-                0x00000000000025ac                HeyzapFetchRewarded
-                0x00000000000025c8                HeyzapShowRewarded
-                0x00000000000025e4                HeyzapShowBanner
-                0x0000000000002610                HeyzapHideBanner
-                0x000000000000261c                HeyzapDestroyBanner
-                0x0000000000002628                HeyzapStartTestActivity
- .text          0x0000000000002634      0x274 debug/Heyzap_register.os
-                0x0000000000002634                HeyzapRegister
-                0x0000000000002684                HeyzapUnRegister
-                0x00000000000026c8                HeyzapRegisterExt()
-                0x000000000000289c                RegisterExt
- .text          0x00000000000028a8        0x0 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x00000000000023a8       0x40 debug/Heyzap_platform.os
+                0x00000000000023a8                _JavaVM::GetEnv(void**, int)
+ .text          0x00000000000023e8      0x134 debug/Heyzap.os
+                0x00000000000023e8                HeyzapInit()
+                0x00000000000023fc                HeyzapTerminate()
+                0x0000000000002408                HeyzapStart
+                0x0000000000002424                HeyzapFetchInterstitial
+                0x0000000000002440                HeyzapShowInterstitial
+                0x000000000000245c                HeyzapFetchVideo
+                0x0000000000002478                HeyzapShowVideo
+                0x0000000000002494                HeyzapFetchRewarded
+                0x00000000000024b0                HeyzapShowRewarded
+                0x00000000000024cc                HeyzapShowBanner
+                0x00000000000024f8                HeyzapHideBanner
+                0x0000000000002504                HeyzapDestroyBanner
+                0x0000000000002510                HeyzapStartTestActivity
+ .text          0x000000000000251c      0x274 debug/Heyzap_register.os
+                0x000000000000251c                HeyzapRegister
+                0x000000000000256c                HeyzapUnRegister
+                0x00000000000025b0                HeyzapRegisterExt()
+                0x0000000000002784                RegisterExt
+ .text          0x0000000000002790        0x0 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
  .text.IwDebugClearConfigCache
-                0x00000000000028a8       0x80 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x00000000000028a8                IwDebugClearConfigCache
+                0x0000000000002790       0x80 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002790                IwDebugClearConfigCache
  .text.IwDebugAssertIsChannelOn
-                0x0000000000002928      0x1ec /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002928                IwDebugAssertIsChannelOn
+                0x0000000000002810      0x1ec /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002810                IwDebugAssertIsChannelOn
  .text.IwDebugAssertShow
-                0x0000000000002b14      0x2e8 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002b14                IwDebugAssertShow
+                0x00000000000029fc      0x2e8 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x00000000000029fc                IwDebugAssertShow
  .text.IwDebugAssertSetSolution
-                0x0000000000002dfc       0xb4 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002dfc                IwDebugAssertSetSolution
+                0x0000000000002ce4       0xb4 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002ce4                IwDebugAssertSetSolution
  .text.IwDebugAssertSetMessage
-                0x0000000000002eb0       0xfc /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002eb0                IwDebugAssertSetMessage
+                0x0000000000002d98       0xfc /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002d98                IwDebugAssertSetMessage
  .text.IwAssertRegisterTextCallback
-                0x0000000000002fac       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002fac                IwAssertRegisterTextCallback
+                0x0000000000002e94       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002e94                IwAssertRegisterTextCallback
  .text.IwAssertRegisterCallback
-                0x0000000000002fc8       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002fc8                IwAssertRegisterCallback
+                0x0000000000002eb0       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002eb0                IwAssertRegisterCallback
  .text.IwDebugTraceDisable
-                0x0000000000002fe4       0x10 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002fe4                IwDebugTraceDisable
+                0x0000000000002ecc       0x10 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002ecc                IwDebugTraceDisable
  .text.IwDebugTraceIsChannelOn
-                0x0000000000002ff4      0x27c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000002ff4                IwDebugTraceIsChannelOn
+                0x0000000000002edc      0x27c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000002edc                IwDebugTraceIsChannelOn
  .text.IwDebugTraceSetTraceChannel
-                0x0000000000003270       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000003270                IwDebugTraceSetTraceChannel
+                0x0000000000003158       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000003158                IwDebugTraceSetTraceChannel
  .text.IwDebugTraceChannelSwitch
-                0x000000000000328c      0x1e4 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x000000000000328c                IwDebugTraceChannelSwitch
+                0x0000000000003174      0x1e4 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000003174                IwDebugTraceChannelSwitch
  .text.IwDebugTraceLineVPrintf
-                0x0000000000003470       0xfc /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x0000000000003470                IwDebugTraceLineVPrintf
+                0x0000000000003358       0xfc /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000003358                IwDebugTraceLineVPrintf
  .text.IwDebugTraceLinePrintf
-                0x000000000000356c       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x000000000000356c                IwDebugTraceLinePrintf
+                0x0000000000003454       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000003454                IwDebugTraceLinePrintf
  .text.IwDebugErrorRegisterCallback
-                0x000000000000359c       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x000000000000359c                IwDebugErrorRegisterCallback
+                0x0000000000003484       0x1c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x0000000000003484                IwDebugErrorRegisterCallback
  .text.IwDebugErrorShow
-                0x00000000000035b8      0x108 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x00000000000035b8                IwDebugErrorShow
+                0x00000000000034a0      0x108 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x00000000000034a0                IwDebugErrorShow
  .text.IwDebugAssertSetUID
-                0x00000000000036c0       0x14 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
-                0x00000000000036c0                IwDebugAssertSetUID
- .text          0x00000000000036d4        0x0 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x00000000000035a8       0x14 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x00000000000035a8                IwDebugAssertSetUID
+ .text          0x00000000000035bc        0x0 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
  .text.s3eEdkErrorSetString
-                0x00000000000036d4       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
-                0x00000000000036d4                s3eEdkErrorSetString
+                0x00000000000035bc       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x00000000000035bc                s3eEdkErrorSetString
  .text.s3eEdkThreadRunOnOS
-                0x0000000000003704       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
-                0x0000000000003704                s3eEdkThreadRunOnOS
+                0x00000000000035ec       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x00000000000035ec                s3eEdkThreadRunOnOS
  .text.s3eEdkThreadRunOnOSAsync
-                0x0000000000003734       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
-                0x0000000000003734                s3eEdkThreadRunOnOSAsync
- .text          0x0000000000003764       0x44 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
-                0x0000000000003764                __aeabi_ldivmod
- .text          0x00000000000037a8       0x10 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
-                0x00000000000037a8                __aeabi_ldiv0
-                0x00000000000037a8                __aeabi_idiv0
- .text          0x00000000000037b8       0x78 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
-                0x00000000000037b8                __gnu_ldivmod_helper
-                0x00000000000037f4                __gnu_uldivmod_helper
- .text          0x0000000000003830      0xeec /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
-                0x0000000000003c68                _Unwind_GetCFA
-                0x0000000000003c70                __gnu_Unwind_RaiseException
-                0x0000000000003d14                __gnu_Unwind_ForcedUnwind
-                0x0000000000003d30                __gnu_Unwind_Resume
-                0x0000000000003da4                __gnu_Unwind_Resume_or_Rethrow
-                0x0000000000003dc4                _Unwind_Complete
-                0x0000000000003dc8                _Unwind_DeleteException
-                0x0000000000003de8                _Unwind_VRS_Get
-                0x0000000000003e6c                _Unwind_VRS_Set
-                0x0000000000003ef4                __gnu_Unwind_Backtrace
-                0x00000000000043ac                __aeabi_unwind_cpp_pr0
-                0x00000000000043b4                __aeabi_unwind_cpp_pr1
-                0x00000000000043bc                __aeabi_unwind_cpp_pr2
-                0x00000000000043c4                _Unwind_VRS_Pop
- .text          0x000000000000471c      0x1a8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
-                0x000000000000471c                __restore_core_regs
-                0x000000000000471c                restore_core_regs
-                0x0000000000004730                __gnu_Unwind_Restore_VFP
-                0x0000000000004738                __gnu_Unwind_Save_VFP
-                0x0000000000004740                __gnu_Unwind_Restore_VFP_D
-                0x0000000000004748                __gnu_Unwind_Save_VFP_D
-                0x0000000000004750                __gnu_Unwind_Restore_VFP_D_16_to_31
-                0x0000000000004758                __gnu_Unwind_Save_VFP_D_16_to_31
-                0x0000000000004760                __gnu_Unwind_Restore_WMMXD
-                0x00000000000047a4                __gnu_Unwind_Save_WMMXD
-                0x00000000000047e8                __gnu_Unwind_Restore_WMMXC
-                0x00000000000047fc                __gnu_Unwind_Save_WMMXC
-                0x0000000000004810                _Unwind_RaiseException
-                0x0000000000004810                ___Unwind_RaiseException
-                0x0000000000004834                ___Unwind_Resume
-                0x0000000000004834                _Unwind_Resume
-                0x0000000000004858                ___Unwind_Resume_or_Rethrow
-                0x0000000000004858                _Unwind_Resume_or_Rethrow
-                0x000000000000487c                _Unwind_ForcedUnwind
-                0x000000000000487c                ___Unwind_ForcedUnwind
-                0x00000000000048a0                _Unwind_Backtrace
-                0x00000000000048a0                ___Unwind_Backtrace
- .text          0x00000000000048c4      0x484 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
-                0x0000000000004950                __gnu_unwind_execute
-                0x0000000000004ccc                __gnu_unwind_frame
-                0x0000000000004d0c                _Unwind_GetRegionStart
-                0x0000000000004d1c                _Unwind_GetLanguageSpecificData
-                0x0000000000004d38                _Unwind_GetDataRelBase
-                0x0000000000004d40                _Unwind_GetTextRelBase
- .text          0x0000000000004d48      0x498 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
-                0x0000000000004d48                __divdi3
- .text          0x00000000000051e0      0x404 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
-                0x00000000000051e0                __udivdi3
- .text          0x00000000000055e4       0xc8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
-                0x00000000000055e4                __udivsi3
-                0x00000000000055e4                __aeabi_uidiv
-                0x000000000000568c                __aeabi_uidivmod
- .text          0x00000000000056ac        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
+                0x000000000000361c       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x000000000000361c                s3eEdkThreadRunOnOSAsync
+ .text          0x000000000000364c       0x44 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                0x000000000000364c                __aeabi_ldivmod
+ .text          0x0000000000003690       0x10 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                0x0000000000003690                __aeabi_ldiv0
+                0x0000000000003690                __aeabi_idiv0
+ .text          0x00000000000036a0       0x78 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                0x00000000000036a0                __gnu_ldivmod_helper
+                0x00000000000036dc                __gnu_uldivmod_helper
+ .text          0x0000000000003718      0xeec /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+                0x0000000000003b50                _Unwind_GetCFA
+                0x0000000000003b58                __gnu_Unwind_RaiseException
+                0x0000000000003bfc                __gnu_Unwind_ForcedUnwind
+                0x0000000000003c18                __gnu_Unwind_Resume
+                0x0000000000003c8c                __gnu_Unwind_Resume_or_Rethrow
+                0x0000000000003cac                _Unwind_Complete
+                0x0000000000003cb0                _Unwind_DeleteException
+                0x0000000000003cd0                _Unwind_VRS_Get
+                0x0000000000003d54                _Unwind_VRS_Set
+                0x0000000000003ddc                __gnu_Unwind_Backtrace
+                0x0000000000004294                __aeabi_unwind_cpp_pr0
+                0x000000000000429c                __aeabi_unwind_cpp_pr1
+                0x00000000000042a4                __aeabi_unwind_cpp_pr2
+                0x00000000000042ac                _Unwind_VRS_Pop
+ .text          0x0000000000004604      0x1a8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
+                0x0000000000004604                __restore_core_regs
+                0x0000000000004604                restore_core_regs
+                0x0000000000004618                __gnu_Unwind_Restore_VFP
+                0x0000000000004620                __gnu_Unwind_Save_VFP
+                0x0000000000004628                __gnu_Unwind_Restore_VFP_D
+                0x0000000000004630                __gnu_Unwind_Save_VFP_D
+                0x0000000000004638                __gnu_Unwind_Restore_VFP_D_16_to_31
+                0x0000000000004640                __gnu_Unwind_Save_VFP_D_16_to_31
+                0x0000000000004648                __gnu_Unwind_Restore_WMMXD
+                0x000000000000468c                __gnu_Unwind_Save_WMMXD
+                0x00000000000046d0                __gnu_Unwind_Restore_WMMXC
+                0x00000000000046e4                __gnu_Unwind_Save_WMMXC
+                0x00000000000046f8                _Unwind_RaiseException
+                0x00000000000046f8                ___Unwind_RaiseException
+                0x000000000000471c                ___Unwind_Resume
+                0x000000000000471c                _Unwind_Resume
+                0x0000000000004740                ___Unwind_Resume_or_Rethrow
+                0x0000000000004740                _Unwind_Resume_or_Rethrow
+                0x0000000000004764                _Unwind_ForcedUnwind
+                0x0000000000004764                ___Unwind_ForcedUnwind
+                0x0000000000004788                _Unwind_Backtrace
+                0x0000000000004788                ___Unwind_Backtrace
+ .text          0x00000000000047ac      0x484 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+                0x0000000000004838                __gnu_unwind_execute
+                0x0000000000004bb4                __gnu_unwind_frame
+                0x0000000000004bf4                _Unwind_GetRegionStart
+                0x0000000000004c04                _Unwind_GetLanguageSpecificData
+                0x0000000000004c20                _Unwind_GetDataRelBase
+                0x0000000000004c28                _Unwind_GetTextRelBase
+ .text          0x0000000000004c30      0x498 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                0x0000000000004c30                __divdi3
+ .text          0x00000000000050c8      0x404 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x00000000000050c8                __udivdi3
+ .text          0x00000000000054cc       0xc8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+                0x00000000000054cc                __udivsi3
+                0x00000000000054cc                __aeabi_uidiv
+                0x0000000000005574                __aeabi_uidivmod
+ .text          0x0000000000005594        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x00000000000056ac        0x0 linker stubs
+ .glue_7t       0x0000000000005594        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x00000000000056ac        0x0 linker stubs
+ .glue_7        0x0000000000005594        0x0 linker stubs
  *(.vfp11_veneer)
- .vfp11_veneer  0x00000000000056ac        0x0 linker stubs
+ .vfp11_veneer  0x0000000000005594        0x0 linker stubs
  *(.v4_bx)
- .v4_bx         0x00000000000056ac        0x0 linker stubs
+ .v4_bx         0x0000000000005594        0x0 linker stubs
 
 .fini
  *(SORT(.fini))
-                0x00000000000056ac                PROVIDE (__etext, .)
-                0x00000000000056ac                PROVIDE (_etext, .)
-                0x00000000000056ac                PROVIDE (etext, .)
+                0x0000000000005594                PROVIDE (__etext, .)
+                0x0000000000005594                PROVIDE (_etext, .)
+                0x0000000000005594                PROVIDE (etext, .)
 
-.rodata         0x00000000000056ac      0x2a4
+.rodata         0x0000000000005594      0x2b4
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x00000000000056ac      0x180 debug/Heyzap_platform.os
- .rodata        0x000000000000582c        0x8 debug/Heyzap_register.os
+ .rodata        0x0000000000005594      0x190 debug/Heyzap_platform.os
+ .rodata        0x0000000000005724        0x8 debug/Heyzap_register.os
  .rodata.str1.4
-                0x0000000000005834      0x11c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
+                0x000000000000572c      0x11c /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(IwDebug.o)
                                         0x120 (size before relaxing)
 
 .rodata1
  *(.rodata1)
 
-.ARM.extab      0x0000000000005950       0x48
+.ARM.extab      0x0000000000005848       0x48
  *(.ARM.extab* .gnu.linkonce.armextab.*)
- .ARM.extab     0x0000000000005950        0xc /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
- .ARM.extab     0x000000000000595c        0x0 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
- .ARM.extab     0x000000000000595c        0xc /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
- .ARM.extab     0x0000000000005968       0x30 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .ARM.extab     0x0000000000005998        0x0 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .ARM.extab     0x0000000000005998        0x0 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
-                0x0000000000005998                PROVIDE (__exidx_start, .)
+ .ARM.extab     0x0000000000005848        0xc /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .ARM.extab     0x0000000000005854        0x0 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .ARM.extab     0x0000000000005854        0xc /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .ARM.extab     0x0000000000005860       0x30 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .ARM.extab     0x0000000000005890        0x0 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .ARM.extab     0x0000000000005890        0x0 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x0000000000005890                PROVIDE (__exidx_start, .)
 
-.ARM.exidx      0x0000000000005998      0x128
+.ARM.exidx      0x0000000000005890      0x128
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x0000000000005998        0x8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
- .ARM.exidx     0x00000000000059a0        0x8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .ARM.exidx     0x0000000000005890        0x8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .ARM.exidx     0x0000000000005898        0x8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
                                          0x10 (size before relaxing)
- .ARM.exidx     0x00000000000059a8       0xb8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .ARM.exidx     0x00000000000058a0       0xb8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
                                          0xd8 (size before relaxing)
- .ARM.exidx     0x0000000000005a60       0x48 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .ARM.exidx     0x0000000000005aa8        0x8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .ARM.exidx     0x0000000000005ab0       0x10 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x0000000000005958       0x48 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .ARM.exidx     0x00000000000059a0        0x8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000000059a8       0x10 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
                                           0x8 (size before relaxing)
-                0x0000000000005ac0                PROVIDE (__exidx_end, .)
+                0x00000000000059b8                PROVIDE (__exidx_end, .)
 
-.eh_frame_hdr   0x0000000000005ac0        0x0
+.eh_frame_hdr   0x00000000000059b8        0x0
  *(.eh_frame_hdr)
- .eh_frame_hdr  0x0000000000005ac0        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
+ .eh_frame_hdr  0x00000000000059b8        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
 
 .eh_frame
  *(.eh_frame)
@@ -673,50 +685,50 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x1e8
+.debug_aranges  0x0000000000000000      0x200
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x88 debug/Heyzap_platform.os
+                0x0000000000000000       0xa0 debug/Heyzap_platform.os
  .debug_aranges
-                0x0000000000000088       0x20 debug/Heyzap.os
+                0x00000000000000a0       0x20 debug/Heyzap.os
  .debug_aranges
-                0x00000000000000a8       0x20 debug/Heyzap_register.os
+                0x00000000000000c0       0x20 debug/Heyzap_register.os
  .debug_aranges
-                0x00000000000000c8       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+                0x00000000000000e0       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
  .debug_aranges
-                0x00000000000000e8       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+                0x0000000000000100       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
  .debug_aranges
-                0x0000000000000108       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+                0x0000000000000120       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
  .debug_aranges
-                0x0000000000000128       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+                0x0000000000000140       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
  .debug_aranges
-                0x0000000000000148       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
+                0x0000000000000160       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
  .debug_aranges
-                0x0000000000000168       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+                0x0000000000000180       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
  .debug_aranges
-                0x0000000000000188       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+                0x00000000000001a0       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
  .debug_aranges
-                0x00000000000001a8       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+                0x00000000000001c0       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
  .debug_aranges
-                0x00000000000001c8       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+                0x00000000000001e0       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x966e
+.debug_info     0x0000000000000000     0x9759
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000     0x5de4 debug/Heyzap_platform.os
- .debug_info    0x0000000000005de4      0x236 debug/Heyzap.os
- .debug_info    0x000000000000601a      0x27d debug/Heyzap_register.os
- .debug_info    0x0000000000006297       0xbd /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
- .debug_info    0x0000000000006354       0xc1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
- .debug_info    0x0000000000006415      0x160 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
- .debug_info    0x0000000000006575     0x1b3d /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
- .debug_info    0x00000000000080b2       0xc1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
- .debug_info    0x0000000000008173      0x8af /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .debug_info    0x0000000000008a22      0x5e6 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .debug_info    0x0000000000009008      0x5a5 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
- .debug_info    0x00000000000095ad       0xc1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .debug_info    0x0000000000000000     0x5ecf debug/Heyzap_platform.os
+ .debug_info    0x0000000000005ecf      0x236 debug/Heyzap.os
+ .debug_info    0x0000000000006105      0x27d debug/Heyzap_register.os
+ .debug_info    0x0000000000006382       0xbd /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .debug_info    0x000000000000643f       0xc1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .debug_info    0x0000000000006500      0x160 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .debug_info    0x0000000000006660     0x1b3d /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .debug_info    0x000000000000819d       0xc1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
+ .debug_info    0x000000000000825e      0x8af /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .debug_info    0x0000000000008b0d      0x5e6 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .debug_info    0x00000000000090f3      0x5a5 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .debug_info    0x0000000000009698       0xc1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
 
 .debug_abbrev   0x0000000000000000      0xf50
  *(.debug_abbrev)
@@ -733,50 +745,50 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
  .debug_abbrev  0x0000000000000dca      0x172 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
  .debug_abbrev  0x0000000000000f3c       0x14 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
 
-.debug_line     0x0000000000000000     0x10c9
+.debug_line     0x0000000000000000     0x10e6
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x0000000000000000      0x3ab debug/Heyzap_platform.os
- .debug_line    0x00000000000003ab       0xcc debug/Heyzap.os
- .debug_line    0x0000000000000477      0x103 debug/Heyzap_register.os
- .debug_line    0x000000000000057a       0x7c /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
- .debug_line    0x00000000000005f6       0x7b /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
- .debug_line    0x0000000000000671       0x7c /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
- .debug_line    0x00000000000006ed      0x4ad /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
- .debug_line    0x0000000000000b9a       0xc5 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
- .debug_line    0x0000000000000c5f      0x184 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .debug_line    0x0000000000000de3      0x132 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .debug_line    0x0000000000000f15      0x120 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
- .debug_line    0x0000000000001035       0x94 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .debug_line    0x0000000000000000      0x3c8 debug/Heyzap_platform.os
+ .debug_line    0x00000000000003c8       0xcc debug/Heyzap.os
+ .debug_line    0x0000000000000494      0x103 debug/Heyzap_register.os
+ .debug_line    0x0000000000000597       0x7c /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_aeabi_ldivmod.o)
+ .debug_line    0x0000000000000613       0x7b /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_dvmd_lnx.o)
+ .debug_line    0x000000000000068e       0x7c /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .debug_line    0x000000000000070a      0x4ad /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .debug_line    0x0000000000000bb7       0xc5 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(libunwind.o)
+ .debug_line    0x0000000000000c7c      0x184 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .debug_line    0x0000000000000e00      0x132 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .debug_line    0x0000000000000f32      0x120 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .debug_line    0x0000000000001052       0x94 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
 
-.debug_frame    0x0000000000000000      0x934
+.debug_frame    0x0000000000000000      0x97c
  *(.debug_frame)
- .debug_frame   0x0000000000000000      0x2f0 debug/Heyzap_platform.os
- .debug_frame   0x00000000000002f0      0x148 debug/Heyzap.os
- .debug_frame   0x0000000000000438       0x74 debug/Heyzap_register.os
- .debug_frame   0x00000000000004ac       0x50 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
- .debug_frame   0x00000000000004fc      0x2a8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
- .debug_frame   0x00000000000007a4       0xfc /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .debug_frame   0x00000000000008a0       0x38 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .debug_frame   0x00000000000008d8       0x3c /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
- .debug_frame   0x0000000000000914       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000000000000000      0x338 debug/Heyzap_platform.os
+ .debug_frame   0x0000000000000338      0x148 debug/Heyzap.os
+ .debug_frame   0x0000000000000480       0x74 debug/Heyzap_register.os
+ .debug_frame   0x00000000000004f4       0x50 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .debug_frame   0x0000000000000544      0x2a8 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .debug_frame   0x00000000000007ec       0xfc /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .debug_frame   0x00000000000008e8       0x38 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .debug_frame   0x0000000000000920       0x3c /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .debug_frame   0x000000000000095c       0x20 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivsi3.o)
 
-.debug_str      0x0000000000000000     0x5eb5
+.debug_str      0x0000000000000000     0x5eff
  *(.debug_str)
- .debug_str     0x0000000000000000     0x4f2c debug/Heyzap_platform.os
-                                       0x50b6 (size before relaxing)
- .debug_str     0x0000000000004f2c       0x7e debug/Heyzap.os
+ .debug_str     0x0000000000000000     0x4f76 debug/Heyzap_platform.os
+                                       0x5107 (size before relaxing)
+ .debug_str     0x0000000000004f76       0x7e debug/Heyzap.os
                                         0x324 (size before relaxing)
- .debug_str     0x0000000000004faa       0xb6 debug/Heyzap_register.os
+ .debug_str     0x0000000000004ff4       0xb6 debug/Heyzap_register.os
                                         0x5aa (size before relaxing)
- .debug_str     0x0000000000005060      0x15b /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
+ .debug_str     0x00000000000050aa      0x15b /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(bpabi.o)
                                         0x180 (size before relaxing)
- .debug_str     0x00000000000051bb      0xb5b /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .debug_str     0x0000000000005205      0xb5b /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
                                         0xc75 (size before relaxing)
- .debug_str     0x0000000000005d16       0xf1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .debug_str     0x0000000000005d60       0xf1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
                                         0x57c (size before relaxing)
- .debug_str     0x0000000000005e07       0xae /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .debug_str     0x0000000000005e51       0xae /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
                                         0x2a0 (size before relaxing)
- .debug_str     0x0000000000005eb5      0x2a1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .debug_str     0x0000000000005eff      0x2a1 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
 
 .debug_loc      0x0000000000000000     0x2f57
  *(.debug_loc)
@@ -804,13 +816,13 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000      0x1e8
+.debug_ranges   0x0000000000000000      0x200
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x78 debug/Heyzap_platform.os
- .debug_ranges  0x0000000000000078       0x70 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
- .debug_ranges  0x00000000000000e8       0x30 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
- .debug_ranges  0x0000000000000118       0x60 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
- .debug_ranges  0x0000000000000178       0x70 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
+ .debug_ranges  0x0000000000000000       0x90 debug/Heyzap_platform.os
+ .debug_ranges  0x0000000000000090       0x70 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(unwind-arm.o)
+ .debug_ranges  0x0000000000000100       0x30 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(pr-support.o)
+ .debug_ranges  0x0000000000000130       0x60 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_divdi3.o)
+ .debug_ranges  0x0000000000000190       0x70 /Users/monroe/Library/Android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin/../lib/gcc/arm-linux-androideabi/4.8/libgcc.a(_udivdi3.o)
 
 .debug_macro
  *(.debug_macro)

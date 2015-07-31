@@ -131,7 +131,7 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
  *(.iplt)
  .iplt          0x00000000000005a8        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
 
-.text           0x00000000000005a8      0xfc4
+.text           0x00000000000005a8      0xea8
  *(.text.unlikely .text.*_unlikely .text.unlikely.*)
  *(.text.exit .text.exit.*)
  .text.exit     0x00000000000005a8       0x10 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
@@ -142,94 +142,94 @@ LOAD /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-ar
  .text          0x00000000000005b8       0x34 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtbegin_so.o
                 0x00000000000005b8                __atexit_handler_wrapper
                 0x00000000000005cc                atexit
- .text          0x00000000000005ec      0xb2c release/Heyzap_platform.os
-                0x00000000000005ec                Heyzap_nativeCallback(_JNIEnv*, _jobject*, int)
-                0x0000000000000878                HeyzapInit_platform()
-                0x0000000000000c44                HeyzapTerminate_platform()
-                0x0000000000000ca0                HeyzapStart_platform(char const*)
-                0x0000000000000d10                HeyzapFetchInterstitial_platform(char const*)
-                0x0000000000000d80                HeyzapShowInterstitial_platform(char const*)
-                0x0000000000000df0                HeyzapFetchVideo_platform(char const*)
-                0x0000000000000e60                HeyzapShowVideo_platform(char const*)
-                0x0000000000000ed0                HeyzapFetchRewarded_platform(char const*)
-                0x0000000000000f40                HeyzapShowRewarded_platform(char const*)
-                0x0000000000000fb0                HeyzapShowBanner_platform(bool, char const*)
-                0x0000000000001028                HeyzapHideBanner_platform()
-                0x0000000000001078                HeyzapDestroyBanner_platform()
-                0x00000000000010c8                HeyzapStartTestActivity_platform()
+ .text          0x00000000000005ec      0xa10 release/Heyzap_platform.os
+                0x00000000000005ec                Heyzap_nativeCallback(_JNIEnv*, _jobject*, int, _jstring*)
+                0x000000000000075c                HeyzapInit_platform()
+                0x0000000000000b28                HeyzapTerminate_platform()
+                0x0000000000000b84                HeyzapStart_platform(char const*)
+                0x0000000000000bf4                HeyzapFetchInterstitial_platform(char const*)
+                0x0000000000000c64                HeyzapShowInterstitial_platform(char const*)
+                0x0000000000000cd4                HeyzapFetchVideo_platform(char const*)
+                0x0000000000000d44                HeyzapShowVideo_platform(char const*)
+                0x0000000000000db4                HeyzapFetchRewarded_platform(char const*)
+                0x0000000000000e24                HeyzapShowRewarded_platform(char const*)
+                0x0000000000000e94                HeyzapShowBanner_platform(bool, char const*)
+                0x0000000000000f0c                HeyzapHideBanner_platform()
+                0x0000000000000f5c                HeyzapDestroyBanner_platform()
+                0x0000000000000fac                HeyzapStartTestActivity_platform()
  .text._ZN7_JNIEnv9NewObjectEP7_jclassP10_jmethodIDz
-                0x0000000000001118       0x38 release/Heyzap_platform.os
-                0x0000000000001118                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
+                0x0000000000000ffc       0x38 release/Heyzap_platform.os
+                0x0000000000000ffc                _JNIEnv::NewObject(_jclass*, _jmethodID*, ...)
  .text._ZN7_JNIEnv14CallVoidMethodEP8_jobjectP10_jmethodIDz
-                0x0000000000001150       0x38 release/Heyzap_platform.os
-                0x0000000000001150                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
- .text          0x0000000000001188       0x34 release/Heyzap.os
-                0x0000000000001188                HeyzapInit()
-                0x000000000000118c                HeyzapTerminate()
-                0x0000000000001190                HeyzapStart
-                0x0000000000001194                HeyzapFetchInterstitial
-                0x0000000000001198                HeyzapShowInterstitial
-                0x000000000000119c                HeyzapFetchVideo
-                0x00000000000011a0                HeyzapShowVideo
-                0x00000000000011a4                HeyzapFetchRewarded
-                0x00000000000011a8                HeyzapShowRewarded
-                0x00000000000011ac                HeyzapShowBanner
-                0x00000000000011b0                HeyzapHideBanner
-                0x00000000000011b4                HeyzapDestroyBanner
-                0x00000000000011b8                HeyzapStartTestActivity
- .text          0x00000000000011bc      0x320 release/Heyzap_register.os
-                0x00000000000011bc                HeyzapRegister
-                0x00000000000011ec                HeyzapUnRegister
-                0x000000000000121c                HeyzapRegisterExt()
-                0x000000000000137c                RegisterExt
- .text          0x00000000000014dc        0x0 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x0000000000001034       0x38 release/Heyzap_platform.os
+                0x0000000000001034                _JNIEnv::CallVoidMethod(_jobject*, _jmethodID*, ...)
+ .text          0x000000000000106c       0x34 release/Heyzap.os
+                0x000000000000106c                HeyzapInit()
+                0x0000000000001070                HeyzapTerminate()
+                0x0000000000001074                HeyzapStart
+                0x0000000000001078                HeyzapFetchInterstitial
+                0x000000000000107c                HeyzapShowInterstitial
+                0x0000000000001080                HeyzapFetchVideo
+                0x0000000000001084                HeyzapShowVideo
+                0x0000000000001088                HeyzapFetchRewarded
+                0x000000000000108c                HeyzapShowRewarded
+                0x0000000000001090                HeyzapShowBanner
+                0x0000000000001094                HeyzapHideBanner
+                0x0000000000001098                HeyzapDestroyBanner
+                0x000000000000109c                HeyzapStartTestActivity
+ .text          0x00000000000010a0      0x320 release/Heyzap_register.os
+                0x00000000000010a0                HeyzapRegister
+                0x00000000000010d0                HeyzapUnRegister
+                0x0000000000001100                HeyzapRegisterExt()
+                0x0000000000001260                RegisterExt
+ .text          0x00000000000013c0        0x0 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
  .text.s3eEdkErrorSetString
-                0x00000000000014dc       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
-                0x00000000000014dc                s3eEdkErrorSetString
+                0x00000000000013c0       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x00000000000013c0                s3eEdkErrorSetString
  .text.s3eEdkThreadRunOnOS
-                0x000000000000150c       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
-                0x000000000000150c                s3eEdkThreadRunOnOS
+                0x00000000000013f0       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x00000000000013f0                s3eEdkThreadRunOnOS
  .text.s3eEdkThreadRunOnOSAsync
-                0x000000000000153c       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
-                0x000000000000153c                s3eEdkThreadRunOnOSAsync
- .text          0x000000000000156c        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
+                0x0000000000001420       0x30 /Applications/Marmalade.app/Contents/s3e/edk/lib/android/libedk.a(edk_helpers.o)
+                0x0000000000001420                s3eEdkThreadRunOnOSAsync
+ .text          0x0000000000001450        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
  *(.gnu.warning)
  *(.glue_7t)
- .glue_7t       0x000000000000156c        0x0 linker stubs
+ .glue_7t       0x0000000000001450        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x000000000000156c        0x0 linker stubs
+ .glue_7        0x0000000000001450        0x0 linker stubs
  *(.vfp11_veneer)
- .vfp11_veneer  0x000000000000156c        0x0 linker stubs
+ .vfp11_veneer  0x0000000000001450        0x0 linker stubs
  *(.v4_bx)
- .v4_bx         0x000000000000156c        0x0 linker stubs
+ .v4_bx         0x0000000000001450        0x0 linker stubs
 
 .fini
  *(SORT(.fini))
-                0x000000000000156c                PROVIDE (__etext, .)
-                0x000000000000156c                PROVIDE (_etext, .)
-                0x000000000000156c                PROVIDE (etext, .)
+                0x0000000000001450                PROVIDE (__etext, .)
+                0x0000000000001450                PROVIDE (_etext, .)
+                0x0000000000001450                PROVIDE (etext, .)
 
-.rodata         0x000000000000156c      0x138
+.rodata         0x0000000000001450      0x148
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.4
-                0x000000000000156c      0x138 release/Heyzap_platform.os
+                0x0000000000001450      0x148 release/Heyzap_platform.os
  .rodata.str1.4
-                0x00000000000016a4        0x8 release/Heyzap_register.os
+                0x0000000000001598        0x8 release/Heyzap_register.os
 
 .rodata1
  *(.rodata1)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x00000000000016ac                PROVIDE (__exidx_start, .)
+                0x00000000000015a0                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00000000000016ac                PROVIDE (__exidx_end, .)
+                0x00000000000015a0                PROVIDE (__exidx_end, .)
 
-.eh_frame_hdr   0x00000000000016a4        0x0
+.eh_frame_hdr   0x0000000000001598        0x0
  *(.eh_frame_hdr)
- .eh_frame_hdr  0x00000000000016a4        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
+ .eh_frame_hdr  0x0000000000001598        0x0 /Users/monroe/Library/Android/android-ndk-r10e/platforms/android-14/arch-arm/usr/lib/crtend_so.o
 
 .eh_frame
  *(.eh_frame)

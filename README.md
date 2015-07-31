@@ -17,11 +17,16 @@ Everything else is auto-generated / internal to Marmalade.
 Once you make changes to the wrapper, you must re-compile the wrapper into the library file that will be used by developers. Instructions on how to do this for each platform are below.
 
 #### Android:
-1. First, you'll need the Android NDK to compile the native (C) part of the extension. Then, in your `~/.bash_profile` or elsewhere, set the environment variable `NDK_ROOT` to the root of the installation:
+1. First, you'll need the Android NDK to compile the native (C++) part of the extension. Then, in your `~/.bash_profile` or elsewhere, set the environment variable `NDK_ROOT` to the root of the installation:
 ```shell
 export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
 ```
-1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. (TODO: This process is yet to be confirmed)
+1. You also want to use [JDK 1.7 (Java 7)](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) to compile the Java part of the extension. Otherwise, [Marmalade might freak out later](https://answers.madewithmarmalade.com/questions/30921/edk-android-unexpected-top-level-exception.html). To do this, set JAVA_HOME to your installation of JDK 1.7 prior to running the `mkb` commands below.
+1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. The former compiles the Java side of the extension, and the latter compiles the C++ side of the extension. ALternatively, you can run these commands directly:
+```shell
+mkb '/path/to/this/mkb/file/Heyzap_android_java.mkb'
+mkb '/path/to/this/mkb/file/Heyzap_android_.mkb'
+```
 
 #### iOS:
 1. Open `Heyzap_iphone.mkb`. Because of a special instruction in this file, this should open Xcode. Alternatively, you can run this command directly:
@@ -68,7 +73,21 @@ assets
 1. If this doesn't work (it won't for code that needs to be compiled with the extension, for example), you can try adding the files to `Heyzap_build.mkf` in the iOS `files` section, using a similar format. We had to do this with the `HZAdMobBannerSupport.h/m` files that are currently required for AdMob banners via HeyzapMediation. YMMV.
 
 
-Documentation on implemented methods
+##The Heyzap Test App for Marmalade
+There is a test app in this repo, in the top-level directory named `heyzaptest`, that demonstrates the HeyzapSDK working in Marmalade. You can open this project in the Marmalade Hub (C++). There are a few settings to mind:
+1. The bundle identifier/package name can be set in the build configuration in the Basic tab for both Android and iOS. Click the Configuration dropdown and edit the current configuration to find this setting.
+1. The Android Manifest can be modified via the configuration settings as well. Activities for Heyzap and other mediated networks should be added in this manner (see `heyzap_manifest.xml`).
+1. Running the sample app in the Marmalade simulator won't work properly. Please run on a device (iOS and Android only).
+
+####Building the test app
+1. Make sure you've compiled the Heyzap extension using the steps above prior to building the test app. The output of that build is in the `lib/` directory of the extension.
+1. Click the "Build" button in the Marmalade Hub. See the full log for details in case of a failure.
+1. Click the "Package, Install" (or whatever you have the button set to do). Again, see the full log in case of failure.
+1. Use the test app on the device.
+    1. The UI is lacking on the test app. You can see the code for it in `heyzaptest/heyzaptest.cpp`. Feel free to improve on it.
+
+
+Documentation on implemented methods in the Heyzap Marmalade extension
 -------------------------------------------
 
 ``` c_cpp
