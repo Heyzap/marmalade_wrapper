@@ -39,15 +39,26 @@ mkb '/path/to/this/mkb/file/Heyzap_iphone.mkb' --buildenv=xcode
 
 ### Android specifics
 #### Adding extra jars (for other networks supported by Heyzap Mediation)
-1. put it in the "incoming" directory  
-1. add it to Heyzap.mkf as an `android-external-jars` and  
-1. add it to Heyzap_android_java.mkb as a `librarypath`  
+1. Put the `.jar` in the "incoming" directory  
+1. Add it to Heyzap.mkf as an `android-external-jars` 
+1. Add it to Heyzap_android_java.mkb as a `librarypath`
+1. Add any required manifest additions to an `xml` file in `android_manifests/` (permissions in `{network}.xml` and activities in `{network}_application.xml` is the naming convention, they are separate because they go in different sections of the manifest XML.
+1. Add the required manifest files as `android-extra-application-manifest=""` and `android-extra-manifest=""` in Heyzap.mkf
+1. If more changes need to be made to the manifest that don't go under the `<manifest>` or `<application>` tags, you'll need to add those to your app's manifest instead (see `heyzaptest/heyzap_manifest.xml`)
+    1. For example, AdColony and Chartboost require `android:hardwareAccelerated="true"` as an attribute of the `<application>` tag in the manifest. This has been added in the test app's manifest override.
+    1. In order to use this manifest instead of the Marmalade default, go to the Android configuration -> Advanced tab, and browse for your replacement manifest file. You should start with the Marmalade default file, which can be found at `/Applications/Marmalade.app/Contents/s3e/deploy/plugins/android/AndroidManifest.xml`.
+
+**Note about Google Play Services:** If you update the `.jar` for Google Play Services (found at `{androidsdk-root}/extras/google/google_play_services/libproject/google-play-services_lib/libs`), also update the `version.xml` included with it in the `google-play-services_lib/res/values/` directory. 
+
+**Note about Vungle:** Vungle's iOS SDK requires that a bunch of assets be included (pngs of their buttons, etc.). I couldn't figure out how to do this in Marmalade inside any of the iOS-specific files, so it had to be done in `Heyzap.mkf`. This means that these files will be included on Android builds, and the filenames clash with the Android SDK `.jar` from Vungle. So, you have to comment out these lines when building the extension for Android (and uncomment them when building for iOS) until we come up with a different solution. UnityAds also has a bundle that has to be included for iOS, but it doesn't cause issues in the Android build (but can still be commented out for Android builds).
 
 ### iOS specifics
 #### Adding extra frameworks/libs (for other networks supported by Heyzap Mediation)
 ##### Networks that distribute a `Network.framework` and nothing else
 1. Add your `.framework` file to `incoming/`.
 1. Add the framework to the list of extra libs in `Heyzap.mkf`, and also add any of the iOS frameworks it depends on.
+
+**Note about Vungle:** Vungle's iOS SDK requires that a bunch of assets be included (pngs of their buttons, etc.). I couldn't figure out how to do this in Marmalade inside any of the iOS-specific files, so it had to be done in `Heyzap.mkf`. This means that these files will be included on Android builds, and the filenames clash with the Android SDK `.jar` from Vungle. So, you have to comment out these lines when building the extension for Android (and uncomment them when building for iOS) until we come up with a different solution. UnityAds also has a bundle that has to be included for iOS, but it doesn't cause issues in the Android build (but can still be commented out for Android builds).
 
 ##### Networks that distribute a `libNetwork.a` file with an associated `Headers` directory
 1. Make a folder in `incoming/` for the network. Add the `.a` and the `Headers/` here.
@@ -86,6 +97,28 @@ There is a test app in this repo, in the top-level directory named `heyzaptest`,
 1. Use the test app on the device.
     1. The UI is lacking on the test app. You can see the code for it in `heyzaptest/heyzaptest.cpp`. Feel free to improve on it.
 
+
+## Currently tested / included SDK versions:
+#### iOS
+* Heyzap `9.0.6`
+* AdColony `2.5.3`
+* AppLovin `3.0.2`
+* Chartboost `5.5.1`
+* Facebook Audience Network ?
+* AdMob (Google Mobile Ads) `7.3.1`
+* HyprMX ? (not to be confused with HyprMediate)
+* UnityAds `1.4.7`
+* Vungle `3.1.2`
+
+#### Android
+* Heyzap `9.0.6`
+* AdColony `2.2.2`
+* AppLovin `6.0.1`
+* Chartboost `5.3.0`
+* Facebook Audience Network `4.4.1`
+* AdMob (Google Mobile Ads) (included in Android)
+* UnityAds `1.4.7`
+* Vungle `3.3.1`
 
 Documentation on implemented methods in the Heyzap Marmalade extension
 -------------------------------------------

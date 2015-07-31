@@ -2,6 +2,8 @@
 # Builder mkb file for the Heyzap extension on iphone
 platform IPHONE
 
+# see http://api.madewithmarmalade.com/build_and_project_options_mkb_.html for options in this file
+
 options
 {
     lib
@@ -9,6 +11,7 @@ options
     output-name-debug="lib/iphone/libHeyzap_d.a"
     buildenv=xcode #in order to resolve AdMob issues, only build the extension using XCode and not scons. this makes the `Heyzap_iphone.mkb` file double-clickable. Alternatively, you can run `mkb '/Users/monroe/dev/marmalade_wrapper/Heyzap_iphone.mkb' --buildenv=xcode` from the command line
 }
+
 define S3E_BUILD_EXT
 
 subproject Heyzap_build

@@ -2,6 +2,9 @@
 # Builder mkb file for the Heyzap extension on android
 platform LINUX
 
+# see http://api.madewithmarmalade.com/build_and_project_options_mkb_.html for options in this file
+
+
 buildtype (SCONS, ARM)
 
 define S3E_ANDROID
