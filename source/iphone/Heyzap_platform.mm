@@ -38,7 +38,6 @@ void HeyzapTerminate_platform()
 { 
 }
 
-//todo: only run this code once
 void HeyzapStart_platform(const char* pubId)
 {
     static dispatch_once_t onceToken;
