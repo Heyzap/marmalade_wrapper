@@ -56,6 +56,12 @@ void HeyzapFetchRewarded_platform(const char* tag);
 
 void HeyzapShowRewarded_platform(const char* tag);
 
+void HeyzapShowBanner_platform(bool top, const char* tag);
+
+void HeyzapHideBanner_platform();
+
+void HeyzapDestroyBanner_platform();
+
 void HeyzapStartTestActivity_platform();
 
 

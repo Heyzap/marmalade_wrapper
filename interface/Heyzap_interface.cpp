@@ -11,44 +11,17 @@
 #include "Heyzap.h"
 
 
+// Define S3E_EXT_SKIP_LOADER_CALL_LOCK on the user-side to skip LoaderCallStart/LoaderCallDone()-entry.
+// e.g. in s3eNUI this is used for generic user-side IwUI-based implementation.
 #ifndef S3E_EXT_SKIP_LOADER_CALL_LOCK
-// For MIPs (and WP8) platform we do not have asm code for stack switching
-// implemented. So we make LoaderCallStart call manually to set GlobalLock
-#if defined __mips || defined S3E_ANDROID_X86 || (defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP))
+#if defined I3D_ARCH_MIPS || defined S3E_ANDROID_X86 || (defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP)) || defined I3D_ARCH_NACLX86_64
+// For platforms missing stack-switching (MIPS, WP8, Android-x86, NaCl, etc.) make loader-entry via LoaderCallStart/LoaderCallDone() on the user-side.
 #define LOADER_CALL_LOCK
 #endif
 #endif
 
-/**
- * Definitions for functions types passed to/from s3eExt interface
- */
-typedef  s3eResult(*HeyzapRegister_t)(HeyzapCallback cbid, s3eCallback fn, void* userData);
-typedef  s3eResult(*HeyzapUnRegister_t)(HeyzapCallback cbid, s3eCallback fn);
-typedef       void(*HeyzapStart_t)(const char* pubId);
-typedef       void(*HeyzapFetchInterstitial_t)(const char* tag);
-typedef       void(*HeyzapShowInterstitial_t)(const char* tag);
-typedef       void(*HeyzapFetchVideo_t)(const char* tag);
-typedef       void(*HeyzapShowVideo_t)(const char* tag);
-typedef       void(*HeyzapFetchRewarded_t)(const char* tag);
-typedef       void(*HeyzapShowRewarded_t)(const char* tag);
-typedef       void(*HeyzapStartTestActivity_t)();
 
-/**
- * struct that gets filled in by HeyzapRegister
- */
-typedef struct HeyzapFuncs
-{
-    HeyzapRegister_t m_HeyzapRegister;
-    HeyzapUnRegister_t m_HeyzapUnRegister;
-    HeyzapStart_t m_HeyzapStart;
-    HeyzapFetchInterstitial_t m_HeyzapFetchInterstitial;
-    HeyzapShowInterstitial_t m_HeyzapShowInterstitial;
-    HeyzapFetchVideo_t m_HeyzapFetchVideo;
-    HeyzapShowVideo_t m_HeyzapShowVideo;
-    HeyzapFetchRewarded_t m_HeyzapFetchRewarded;
-    HeyzapShowRewarded_t m_HeyzapShowRewarded;
-    HeyzapStartTestActivity_t m_HeyzapStartTestActivity;
-} HeyzapFuncs;
+#include "Heyzap_interface.h"
 
 static HeyzapFuncs g_Ext;
 static bool g_GotExt = false;
@@ -101,13 +74,13 @@ s3eResult HeyzapRegister(HeyzapCallback cbid, s3eCallback fn, void* userData)
         return S3E_RESULT_ERROR;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapRegister);
 #endif
 
     s3eResult ret = g_Ext.m_HeyzapRegister(cbid, fn, userData);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapRegister);
 #endif
 
     return ret;
@@ -121,13 +94,13 @@ s3eResult HeyzapUnRegister(HeyzapCallback cbid, s3eCallback fn)
         return S3E_RESULT_ERROR;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapUnRegister);
 #endif
 
     s3eResult ret = g_Ext.m_HeyzapUnRegister(cbid, fn);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapUnRegister);
 #endif
 
     return ret;
@@ -141,13 +114,13 @@ void HeyzapStart(const char* pubId)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapStart);
 #endif
 
     g_Ext.m_HeyzapStart(pubId);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapStart);
 #endif
 
     return;
@@ -161,13 +134,13 @@ void HeyzapFetchInterstitial(const char* tag)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapFetchInterstitial);
 #endif
 
     g_Ext.m_HeyzapFetchInterstitial(tag);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapFetchInterstitial);
 #endif
 
     return;
@@ -181,13 +154,13 @@ void HeyzapShowInterstitial(const char* tag)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapShowInterstitial);
 #endif
 
     g_Ext.m_HeyzapShowInterstitial(tag);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapShowInterstitial);
 #endif
 
     return;
@@ -201,13 +174,13 @@ void HeyzapFetchVideo(const char* tag)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapFetchVideo);
 #endif
 
     g_Ext.m_HeyzapFetchVideo(tag);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapFetchVideo);
 #endif
 
     return;
@@ -221,13 +194,13 @@ void HeyzapShowVideo(const char* tag)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapShowVideo);
 #endif
 
     g_Ext.m_HeyzapShowVideo(tag);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapShowVideo);
 #endif
 
     return;
@@ -241,13 +214,13 @@ void HeyzapFetchRewarded(const char* tag)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapFetchRewarded);
 #endif
 
     g_Ext.m_HeyzapFetchRewarded(tag);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapFetchRewarded);
 #endif
 
     return;
@@ -261,13 +234,73 @@ void HeyzapShowRewarded(const char* tag)
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapShowRewarded);
 #endif
 
     g_Ext.m_HeyzapShowRewarded(tag);
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapShowRewarded);
+#endif
+
+    return;
+}
+
+void HeyzapShowBanner(bool top, const char* tag)
+{
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[9] func: HeyzapShowBanner"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapShowBanner);
+#endif
+
+    g_Ext.m_HeyzapShowBanner(top, tag);
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapShowBanner);
+#endif
+
+    return;
+}
+
+void HeyzapHideBanner()
+{
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[10] func: HeyzapHideBanner"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapHideBanner);
+#endif
+
+    g_Ext.m_HeyzapHideBanner();
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapHideBanner);
+#endif
+
+    return;
+}
+
+void HeyzapDestroyBanner()
+{
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[11] func: HeyzapDestroyBanner"));
+
+    if (!_extLoad())
+        return;
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapDestroyBanner);
+#endif
+
+    g_Ext.m_HeyzapDestroyBanner();
+
+#ifdef LOADER_CALL_LOCK
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapDestroyBanner);
 #endif
 
     return;
@@ -275,19 +308,19 @@ void HeyzapShowRewarded(const char* tag)
 
 void HeyzapStartTestActivity()
 {
-    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[9] func: HeyzapStartTestActivity"));
+    IwTrace(HEYZAP_VERBOSE, ("calling Heyzap[12] func: HeyzapStartTestActivity"));
 
     if (!_extLoad())
         return;
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallStart(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallStart(S3E_TRUE, (void*)g_Ext.m_HeyzapStartTestActivity);
 #endif
 
     g_Ext.m_HeyzapStartTestActivity();
 
 #ifdef LOADER_CALL_LOCK
-    s3eDeviceLoaderCallDone(S3E_TRUE, NULL);
+    s3eDeviceLoaderCallDone(S3E_TRUE, (void*)g_Ext.m_HeyzapStartTestActivity);
 #endif
 
     return;

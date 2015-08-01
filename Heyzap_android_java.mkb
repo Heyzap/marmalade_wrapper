@@ -11,5 +11,16 @@ files
 librarypath "$MARMALADE_ROOT/s3e/deploy/plugins/android/android.jar"
 librarypath "$MARMALADE_ROOT/s3e/loader/android/s3e_release.jar"
 librarypath "incoming/heyzap-ads-sdk.jar"
+librarypath "incoming/google_play_services/google-play-services.jar"
+librarypath "incoming/android-support-v4.jar"
+librarypath "incoming/adcolony.jar"
+librarypath "incoming/applovin-sdk-6.0.1.jar"
+librarypath "incoming/chartboost.jar"
+librarypath "incoming/AudienceNetwork.jar"
+librarypath "incoming/unity-ads.jar"
+librarypath "incoming/Vungle/dagger-1.2.2.jar"
+librarypath "incoming/Vungle/javax.inject-1.jar"
+librarypath "incoming/Vungle/nineoldandroids-2.4.0.jar"
+librarypath "incoming/Vungle/vungle-publisher-adaptive-id-3.3.1.jar"
 
 option output-name=lib/android/Heyzap.jar

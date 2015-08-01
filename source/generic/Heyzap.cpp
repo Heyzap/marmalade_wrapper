@@ -58,6 +58,20 @@ void HeyzapShowRewarded(const char* tag)
 	HeyzapShowRewarded_platform(tag);
 }
 
+void HeyzapShowBanner(bool top, const char* tag)
+{
+	HeyzapShowBanner_platform(top, tag);
+}
+void HeyzapHideBanner()
+{
+	HeyzapHideBanner_platform();
+}
+
+void HeyzapDestroyBanner()
+{
+	HeyzapDestroyBanner_platform();
+}
+
 void HeyzapStartTestActivity()
 {
 	HeyzapStartTestActivity_platform();
