@@ -2,6 +2,8 @@
 # Builder mkb file for the java portion of the Heyzap extension on android
 platform JAVA
 
+# see http://api.madewithmarmalade.com/build_and_project_options_mkb_.html for options in this file
+
 files
 {
     (source/android)
