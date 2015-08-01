@@ -90,7 +90,9 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 
 
 ##The Heyzap Test App for Marmalade
+
 There is a test app in this repo, in the top-level directory named `heyzaptest`, that demonstrates the HeyzapSDK working in Marmalade. You can open this project in the Marmalade Hub (C++). There are a few settings to mind:
+
 1. The bundle identifier/package name can be set in the build configuration in the Basic tab for both Android and iOS. Click the Configuration dropdown and edit the current configuration to find this setting.
 1. The Android Manifest can be modified via the configuration settings as well. Activities for Heyzap and other mediated networks should be added in this manner (see `heyzap_manifest.xml`).
 1. Running the sample app in the Marmalade simulator won't work properly. Please run on a device (iOS and Android only).
