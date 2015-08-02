@@ -23,7 +23,7 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 	export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
 	```
 1. You also want to use [JDK 1.7 (Java 7)](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) to compile the Java part of the extension. Otherwise, [Marmalade might freak out later](https://answers.madewithmarmalade.com/questions/30921/edk-android-unexpected-top-level-exception.html). To do this, set JAVA_HOME to your installation of JDK 1.7 prior to running the `mkb` commands below.
-1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. The former compiles the Java side of the extension, and the latter compiles the C++ side of the extension. ALternatively, you can run these commands directly:
+1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. The former compiles the Java side of the extension, and the latter compiles the C++ side of the extension. Alternatively, you can run these commands directly:
 
     ```shell
     mkb '/path/to/this/mkb/file/Heyzap_android_java.mkb'
@@ -61,11 +61,9 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 1. Add your `.framework` file to `incoming/`.
 1. Add the framework to the list of extra libs in `Heyzap.mkf`, and also add any of the iOS frameworks it depends on.
 
-**Note about Vungle:** Vungle's iOS SDK requires that a bunch of assets be included (pngs of their buttons, etc.). I couldn't figure out how to do this in Marmalade inside any of the iOS-specific files, so it had to be done in `Heyzap.mkf`. This means that these files will be included on Android builds, and the filenames clash with the Android SDK `.jar` from Vungle. So, you have to comment out these lines when building the extension for Android (and uncomment them when building for iOS) until we come up with a different solution. UnityAds also has a bundle that has to be included for iOS, but it doesn't cause issues in the Android build (but can still be commented out for Android builds).
-
 ##### Networks that distribute a `libNetwork.a` file with an associated `Headers` directory
 1. Make a folder in `incoming/` for the network. Add the `.a` and the `Headers/` here.
-1. In the `deployments` section of `Heyzap.mkf`, add the folder using `iphone-link-libdir="your/directory/here" (relative to the `.mkf` file you're editing), and then add the lib with `iphone-link-lib=Network`. Marmalade will automatically add the `lib` and the `.a` to `Network` in this latter addition. Example:
+1. In the `deployments` section of `Heyzap.mkf`, add the folder using `iphone-link-libdir="your/directory/here"` (relative to the `.mkf` file you're editing), and then add the lib with `iphone-link-lib=Network`. Marmalade will automatically add the `lib` and the `.a` to `Network` in this latter addition. Example:
 
     ```
     # AppLovin has a `.a` file, not a .framework
@@ -88,6 +86,8 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 1. Cross your fingers. 
 1. If this doesn't work (it won't for code that needs to be compiled with the extension, for example), you can try adding the files to `Heyzap_build.mkf` in the iOS `files` section, using a similar format. We had to do this with the `HZAdMobBannerSupport.h/m` files that are currently required for AdMob banners via HeyzapMediation. YMMV.
 
+**Note about Vungle:** Vungle's iOS SDK requires that a bunch of assets be included (pngs of their buttons, etc.). I couldn't figure out how to do this in Marmalade inside any of the iOS-specific files, so it had to be done in `Heyzap.mkf`. This means that these files will be included on Android builds, and the filenames clash with the Android SDK `.jar` from Vungle. So, you have to comment out these lines when building the extension for Android (and uncomment them when building for iOS) until we come up with a different solution. UnityAds also has a bundle that has to be included for iOS, but it doesn't cause issues in the Android build (but can still be commented out for Android builds).
+
 
 ##The Heyzap Test App for Marmalade
 
@@ -99,6 +99,7 @@ There is a test app in this repo, in the top-level directory named `heyzaptest`,
 
 ####Building the test app
 1. Make sure you've compiled the Heyzap extension using the steps above prior to building the test app. The output of that build is in the `lib/` directory of the extension.
+1. Open the project (inside the `heyzaptest/` folder of this repo) in the Marmalade Hub C++.
 1. Click the "Build" button in the Marmalade Hub. See the full log for details in case of a failure.
 1. Click the "Package, Install" (or whatever you have the button set to do). Again, see the full log in case of failure.
 1. Use the test app on the device.
