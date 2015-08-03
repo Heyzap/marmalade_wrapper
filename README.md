@@ -38,14 +38,16 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 	```
 1. Build the Xcode project that opens for you. It's located in `build_heyzap_iphone_iphone_xcode`. If there are no errors, this will update the lib at `lib/libHeyzap_d.a`
 	1. The `_d` designates that the lib was built in the "Debug" configuration. You can build the "Release" configuration by [changing the scheme of the build](http://stackoverflow.com/a/5387158/2544629). You should build both.
-	1. If you see an error like this: `clang: error: invalid argument '-miphoneos-version-min=6.0' not allowed with '-mios-simulator-version-min=5.1'`, set the deployment target to the generic `iOS Device` setting or the name of the actual device you have plugged in to your computer (not required to have one at this step) instead of the iOS simulator. This setting shouldn't really matter since we're not running anything on device at this step, but we've added a special compiler flag for the minumum OS version for compatibility with AdMob (see `Heyzap_uild.mkf`) and it requires that this setting be chosen.
+	1. If you see an error like this: `clang: error: invalid argument '-miphoneos-version-min=6.0' not allowed with '-mios-simulator-version-min=5.1'`, set the deployment target to the generic `iOS Device` setting or the name of the actual device you have plugged in to your computer (not required to have one at this step) instead of the iOS simulator. This setting shouldn't really matter since we're not running anything on device at this step, but we've added a special compiler flag for the minumum OS version for compatibility with AdMob (see `Heyzap_build.mkf`) and it requires that this setting be chosen.
 
 
 ### Android specifics
 #### Adding extra jars (for other networks supported by Heyzap Mediation)
 1. Put the `.jar` in the "incoming" directory  
-1. Add it to Heyzap.mkf as an `android-external-jars` 
-1. Add it to Heyzap_android_java.mkb as a `librarypath`
+1. Add it to `Heyzap.mkf` as an `android-external-jars` in the `deployments {}` section
+	1. i.e.: `android-external-jars="incoming/heyzap-ads-sdk.jar"`
+1. Add it to `Heyzap_android_java.mkb` as a `librarypath`
+	1. i.e.: `librarypath "incoming/heyzap-ads-sdk.jar"`
 1. Add any required manifest additions to an `xml` file in `android_manifests/` (permissions in `{network}.xml` and activities in `{network}_application.xml` is the naming convention, they are separate because they go in different sections of the manifest XML.
 1. Add the required manifest files as `android-extra-application-manifest=""` and `android-extra-manifest=""` in Heyzap.mkf
 1. If more changes need to be made to the manifest that don't go under the `<manifest>` or `<application>` tags, you'll need to add those to your app's manifest instead (see `heyzaptest/heyzap_manifest.xml`)
