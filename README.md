@@ -23,6 +23,7 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 	export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
 	```
 1. You also want to use [JDK 1.7 (Java 7)](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) to compile the Java part of the extension. Otherwise, [Marmalade might freak out later](https://answers.madewithmarmalade.com/questions/30921/edk-android-unexpected-top-level-exception.html). To do this, set `JAVA_HOME` to your installation of JDK 1.7 prior to running the `mkb` commands below.
+	1. [Here's a convenient way to set the current JDK version from the command line](https://gist.github.com/ekilah/0d8fbc6b1e3e3c3d2b1a).
 1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. The former compiles the Java side of the extension, and the latter compiles the C++ side of the extension. Alternatively, you can run these commands directly:
 
     ```shell
