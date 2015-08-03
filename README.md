@@ -22,12 +22,12 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 	```shell
 	export NDK_ROOT="/Users/you/install_directory_for_android-ndk"
 	```
-1. You also want to use [JDK 1.7 (Java 7)](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) to compile the Java part of the extension. Otherwise, [Marmalade might freak out later](https://answers.madewithmarmalade.com/questions/30921/edk-android-unexpected-top-level-exception.html). To do this, set JAVA_HOME to your installation of JDK 1.7 prior to running the `mkb` commands below.
+1. You also want to use [JDK 1.7 (Java 7)](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html) to compile the Java part of the extension. Otherwise, [Marmalade might freak out later](https://answers.madewithmarmalade.com/questions/30921/edk-android-unexpected-top-level-exception.html). To do this, set `JAVA_HOME` to your installation of JDK 1.7 prior to running the `mkb` commands below.
 1. Open `Heyzap_android_java.mkb` and `Heyzap_android.mkb`. The former compiles the Java side of the extension, and the latter compiles the C++ side of the extension. Alternatively, you can run these commands directly:
 
     ```shell
     mkb '/path/to/this/mkb/file/Heyzap_android_java.mkb'
-    mkb '/path/to/this/mkb/file/Heyzap_android_.mkb'
+    mkb '/path/to/this/mkb/file/Heyzap_android.mkb'
     ```
 
 #### iOS:
@@ -37,7 +37,8 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 	mkb '/path/to/this/mkb/file/Heyzap_iphone.mkb' --buildenv=xcode
 	```
 1. Build the Xcode project that opens for you. It's located in `build_heyzap_iphone_iphone_xcode`. If there are no errors, this will update the lib at `lib/libHeyzap_d.a`
-	1. The `_d` designates that the lib was built in the "Debug" configuration. You can build the "Release" configuration by [changing the scheme of the build](http://stackoverflow.com/a/5387158/2544629). You should do both.
+	1. The `_d` designates that the lib was built in the "Debug" configuration. You can build the "Release" configuration by [changing the scheme of the build](http://stackoverflow.com/a/5387158/2544629). You should build both.
+	1. If you see an error like this: `clang: error: invalid argument '-miphoneos-version-min=6.0' not allowed with '-mios-simulator-version-min=5.1'`, set the deployment target to the generic `iOS Device` setting or the name of the actual device you have plugged in to your computer (not required to have one at this step) instead of the iOS simulator. This setting shouldn't really matter since we're not running anything on device at this step, but we've added a special compiler flag for the minumum OS version for compatibility with AdMob (see `Heyzap_uild.mkf`) and it requires that this setting be chosen.
 
 
 ### Android specifics
@@ -53,7 +54,6 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
 
 **Note about Google Play Services:** If you update the `.jar` for Google Play Services (found at `{androidsdk-root}/extras/google/google_play_services/libproject/google-play-services_lib/libs`), also update the `version.xml` included with it in the `google-play-services_lib/res/values/` directory. 
 
-**Note about Vungle:** Vungle's iOS SDK requires that a bunch of assets be included (pngs of their buttons, etc.). I couldn't figure out how to do this in Marmalade inside any of the iOS-specific files, so it had to be done in `Heyzap.mkf`. This means that these files will be included on Android builds, and the filenames clash with the Android SDK `.jar` from Vungle. So, you have to comment out these lines when building the extension for Android (and uncomment them when building for iOS) until we come up with a different solution. UnityAds also has a bundle that has to be included for iOS, but it doesn't cause issues in the Android build (but can still be commented out for Android builds).
 
 ### iOS specifics
 #### Adding extra frameworks/libs (for other networks supported by Heyzap Mediation)
@@ -72,21 +72,19 @@ Once you make changes to the wrapper, you must re-compile the wrapper into the l
     ```
 
 ##### Networks that don't play nicely
-1. Take whatever files the network requires (i.e.: `UnityAds.bundle`, Vungle's PNGs and `.db` files) and try adding them to `Heyzap.mkf`'s `assets` section. The format is:
+1. Take whatever files the network requires (i.e.: `UnityAds.bundle`, Vungle's PNGs and `.db` files) and try adding them to your app's `.mkb` `assets` section. The format is:
 
     ```
     assets
     {
-	["Name_of_the_folder_in_Xcode_that_will_contain_these_assets"]
-	(filepath/relative/to/this/file/that/contains/assets)
-	Asset.png
-	OtherAsset.bundle
+		[ASSET_GROUP_NAME]
+		(filepath/relative/to/this/file/that/contains/assets)
+		Asset.png
+		OtherAsset.bundle
     }
     ```
-1. Cross your fingers. 
-1. If this doesn't work (it won't for code that needs to be compiled with the extension, for example), you can try adding the files to `Heyzap_build.mkf` in the iOS `files` section, using a similar format. We had to do this with the `HZAdMobBannerSupport.h/m` files that are currently required for AdMob banners via HeyzapMediation. YMMV.
-
-**Note about Vungle:** Vungle's iOS SDK requires that a bunch of assets be included (pngs of their buttons, etc.). I couldn't figure out how to do this in Marmalade inside any of the iOS-specific files, so it had to be done in `Heyzap.mkf`. This means that these files will be included on Android builds, and the filenames clash with the Android SDK `.jar` from Vungle. So, you have to comment out these lines when building the extension for Android (and uncomment them when building for iOS) until we come up with a different solution. UnityAds also has a bundle that has to be included for iOS, but it doesn't cause issues in the Android build (but can still be commented out for Android builds).
+1. `ASSET_GROUP_NAME` can be set to whatever you like. In our current case, Vungle and UnityAds requre some additional assets on iOS only, so the `heyzaptest` test app (see: `heyzaptest/heyzaptest.mkb`) has an asset group named `iOS`. You then set what asset group your app deployment is using by clicking the `Configuration->Edit Current` menu in the Hub and navigating to the `Project` tab. You can read more about this feature of Marmalade [here](http://docs.madewithmarmalade.com/display/MD/Configuring+deployment+settings+in+MKBs#ConfiguringdeploymentsettingsinMKBs-assetgroupsAssetgroups). By only changing this setting for our iOS deployments, the assets will be excluded from Android builds.
+1. If this doesn't work for your case (it won't for code that needs to be compiled with the extension, for example), you can try adding the files to `Heyzap_build.mkf` in the platform-dependent `files` section, using a similar format. We had to do this with the `HZAdMobBannerSupport.h/m` files that are currently required for AdMob banners via HeyzapMediation on iOS. YMMV.
 
 
 ##The Heyzap Test App for Marmalade

@@ -26,24 +26,6 @@ files
     Heyzap.defines.txt
 }
 
-assets
-{
-    # this is necessary for iOS UnityAds, but can't be in the iOS section of Heyzap_build.mkf. This means this is being included in Android builds also..
-    (incoming)
-    UnityAds.bundle
-
-    #this is required for Vungle iOS, but can't be in the iOS section of Heyzap_build.mkf. This means this is being included in Android builds also..
-    #unfortunately these includes must be commented out while building an Android app with the Vungle .jar because the filenames clash.
-    (incoming/VungleSDK.embeddedframework/VungleSDK.framework/Resources)
-    __vungle.db
-    Info.plist
-    vg_close.png
-    vg_cta.png
-    vg_mute_off.png
-    vg_mute_on.png
-    vg_privacy.png
-}
-
 defines
 {
     IW_TRACE_CHANNEL_HEYZAP_VERBOSE=2

@@ -12,3 +12,23 @@ subprojects
 deployment
 {
 }
+
+assets
+{
+    [iOS] #this is the name of the asset group we're creating for the below assets - this asset group is then set as the one to use in the Marmalade Hub settings for the project
+    # see http://docs.madewithmarmalade.com/display/MD/Configuring+deployment+settings+in+MKBs#ConfiguringdeploymentsettingsinMKBs-assetgroupsAssetgroups for more info
+    
+    # this is necessary for iOS UnityAds
+    (../incoming)
+    UnityAds.bundle
+
+    #this is required for Vungle iOS
+    (../incoming/VungleSDK.embeddedframework/VungleSDK.framework/Resources)
+    __vungle.db
+    Info.plist
+    vg_close.png
+    vg_cta.png
+    vg_mute_off.png
+    vg_mute_on.png
+    vg_privacy.png
+}
