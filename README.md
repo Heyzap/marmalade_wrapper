@@ -113,9 +113,9 @@ There is a test app in this repo, in the top-level directory named `heyzaptest`,
 * AdColony `2.5.3`
 * AppLovin `3.0.2`
 * Chartboost `5.5.1`
-* Facebook Audience Network ?
+* Facebook Audience Network `4.3.0`
 * AdMob (Google Mobile Ads) `7.3.1`
-* HyprMX ? (not to be confused with HyprMediate)
+* HyprMX `36` (not to be confused with HyprMediate)
 * UnityAds `1.4.7`
 * Vungle `3.1.2`
 
