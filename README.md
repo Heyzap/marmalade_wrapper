@@ -4,6 +4,7 @@ A Marmalade wrapper for the Heyzap Mediation SDK, which allows you to show ads f
 ### Using the wrapper
 
 All of the supported networks' SDKs (see below) are already included in this wrapper repo. Just include this wrapper as a subproject in your Marmalade app and you should be good to go. The rest of this README is dedicated to:
+
 1. Explaining how to integrate more networks/update network SDKs/etc., which should only be relevant as newer versions become available that you need that aren't provdied here
 1. Using the test app provided as a part of this repo
 
