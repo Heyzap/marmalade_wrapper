@@ -95,7 +95,7 @@ deployments
 
     # The below adds all mediated networks and their required iOS frameworks
     # "-F" flag adds a directory to the framework search path
-    iphone-link-opts="-ObjC -F$CWD/incoming/ -weak_framework Security -weak_framework iAd -weak_framework AdSupport -weak_framework CoreTelephony -framework EventKit -lxml2 -F$CWD/incoming/ -framework HeyzapAds -framework GoogleMobileAds -framework EventKitUI -framework AdColony -framework WebKit -framework Social -framework UnityAds -framework Chartboost -framework FBAudienceNetwork -framework CoreImage -framework HyprMX -F$CWD/incoming/VungleSDK.embeddedframework/ -framework VungleSDK -lsqlite3 -lz"
+    iphone-link-opts="-ObjC -F$CWD/incoming/ -weak_framework Security -weak_framework iAd -weak_framework AdSupport -weak_framework CoreTelephony -framework EventKit -framework MessageUI -lxml2 -lsqlite3 -F$CWD/incoming/ -framework HeyzapAds -framework GoogleMobileAds -framework EventKitUI -framework AdColony -framework WebKit -framework Social -framework UnityAds -framework Chartboost -framework FBAudienceNetwork -framework CoreImage -framework HyprMX -F$CWD/incoming/VungleSDK.embeddedframework/ -framework VungleSDK -lz"
 
     # AppLovin has a `.a` file, not a .framework
     iphone-link-libdir = "incoming/AppLovin"
